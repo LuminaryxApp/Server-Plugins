@@ -1,48 +1,162 @@
 # LuminaryEconomy
 
-Multi-currency economy system built for prison servers. Comes with a sidebar scoreboard that shows player stats.
+**Multi-currency economy with a live scoreboard sidebar.** Handle tokens, gems, beacons, or any custom currencies you need. The sidebar keeps players informed with real-time stats.
+
+Built for prison servers running Paper 1.20+.
+
+---
+
+## Screenshots
+
+<!-- Add your screenshots here -->
+<!-- ![Scoreboard Sidebar](images/scoreboard.png) -->
+<!-- ![Balance Menu](images/balance-gui.png) -->
+<!-- ![Currency Setup](images/currencies.png) -->
+
+*Screenshots coming soon - showing the sidebar in action, currency menus, and admin panel.*
+
+---
+
+## Why I Built This
+
+Prison servers need more than just one currency. You've got tokens for enchants, gems for cosmetics, beacons for special items - trying to track all that with a basic economy plugin doesn't cut it. Plus I wanted a sidebar that actually shows useful info without needing a separate scoreboard plugin.
+
+---
 
 ## Features
 
 ### Multiple Currencies
-Not just one balance - this handles tokens, beacons, gems, or whatever currencies you want to set up. Each currency can have its own icon and formatting.
+Define as many currencies as you need. Each one gets its own:
+- Display name and formatting
+- Icon for menus
+- Shorthand commands (`/tokens`, `/gems`, etc.)
+- PlaceholderAPI support
 
-### Scoreboard Sidebar
-The sidebar shows player info at a glance:
-- Current rank (pulls from LuminaryRanks if installed)
-- Currency balances
-- Group/prefix (pulls from LuminaryGroups if installed)
+### Live Scoreboard
+The sidebar updates in real-time showing:
+- Player's current rank (from LuminaryRanks)
+- All currency balances
+- Group prefix (from LuminaryGroups)
 - Online player count
 - Custom lines you define
 
-The scoreboard updates automatically and players can toggle it off if they want with `/scoreboard`.
+Players can toggle it off if they want a cleaner screen.
 
-### Commands
-- `/economy` or `/bal` - check your balances
-- `/tokens`, `/beacons`, `/gems` - quick access to specific currencies
-- `/pay` - send currency to another player
-- `/scoreboard` - toggle the sidebar on/off
+### Player-to-Player Payments
+Send any currency to other players. Configurable tax rates if you want to create money sinks.
 
-Admin commands let you give, take, set, and reset player currencies.
+---
 
-## Setup
+## Screenshots Showcase
 
-1. Install LuminaryCore first (required)
-2. Drop this jar in plugins
+### Sidebar Display
+<!-- ![Sidebar showing rank, currencies, and player info](images/sidebar-example.png) -->
+*The sidebar pulls data from multiple plugins to give players a complete overview.*
+
+### Admin Panel
+<!-- ![Admin currency management interface](images/admin-panel.png) -->
+*Easy management of player balances and currency settings.*
+
+---
+
+## Commands
+
+| Command | Description | Permission |
+|---------|-------------|------------|
+| `/balance` or `/bal` | Check all balances | `luminaryeconomy.use` |
+| `/tokens [player]` | Check token balance | `luminaryeconomy.use` |
+| `/beacons [player]` | Check beacon balance | `luminaryeconomy.use` |
+| `/gems [player]` | Check gem balance | `luminaryeconomy.use` |
+| `/pay <player> <amount> [currency]` | Send currency | `luminaryeconomy.pay` |
+| `/scoreboard` | Toggle sidebar | `luminaryeconomy.scoreboard` |
+| `/eco give <player> <amount> <currency>` | Give currency | `luminaryeconomy.admin.give` |
+| `/eco take <player> <amount> <currency>` | Remove currency | `luminaryeconomy.admin.take` |
+| `/eco set <player> <amount> <currency>` | Set balance | `luminaryeconomy.admin.set` |
+
+---
+
+## Installation
+
+1. Install **LuminaryCore** first (required dependency)
+2. Drop `LuminaryEconomy-1.0.0.jar` into your `plugins` folder
 3. Start the server
-4. Edit the generated configs to set up your currencies
+4. Edit `plugins/LuminaryEconomy/config.yml` to set up currencies
+5. Customize `scoreboard.yml` for sidebar layout
 
-## Config Files
+---
 
-- `config.yml` - main settings and currency definitions
-- `scoreboard.yml` - customize the sidebar layout and placeholders
+## Configuration Example
 
-## Placeholders
+```yaml
+currencies:
+  tokens:
+    display-name: "&eTokens"
+    icon: GOLD_INGOT
+    starting-balance: 0
+    format: "&e{amount} Tokens"
 
-Works with PlaceholderAPI. Also integrates with LuminaryRanks and LuminaryGroups to show rank/group info on the scoreboard.
+  beacons:
+    display-name: "&bBeacons"
+    icon: BEACON
+    starting-balance: 0
+    format: "&b{amount} Beacons"
+```
 
-## Dependencies
+---
 
-**Required:** LuminaryCore
+## Tech Stack
 
-**Optional:** PlaceholderAPI, LuminaryRanks, LuminaryGroups
+- **Java 17**
+- **Paper API 1.20.1**
+- **Adventure API** for text/scoreboard
+- **PlaceholderAPI** integration (optional)
+
+---
+
+## Project Structure
+
+```
+LuminaryEconomy/
+├── src/main/java/com/luminary/economy/
+│   ├── LuminaryEconomy.java       # Main plugin class
+│   ├── command/                   # Economy commands
+│   ├── config/                    # Config management
+│   ├── currency/                  # Currency definitions
+│   ├── data/                      # Player balance storage
+│   ├── placeholder/               # PlaceholderAPI expansion
+│   └── scoreboard/                # Sidebar management
+└── src/main/resources/
+    ├── plugin.yml
+    ├── config.yml
+    └── scoreboard.yml
+```
+
+---
+
+## Integration
+
+This plugin talks to other Luminary plugins:
+- **LuminaryRanks** - Shows current rank on sidebar
+- **LuminaryGroups** - Shows group prefix on sidebar
+- **LuminaryShop** - Uses these currencies for transactions
+
+---
+
+## What I Learned
+
+The scoreboard system was tricky - Minecraft has limits on entry length and you need to handle color codes carefully. I also learned about lazy initialization for plugin hooks since load order with soft dependencies isn't guaranteed.
+
+---
+
+## Part of the Luminary Suite
+
+- **LuminaryCore** - Required foundation
+- **LuminaryRanks** - Rank progression system
+- **LuminaryGroups** - Permission groups
+- [View all plugins](#)
+
+---
+
+## License
+
+Portfolio project. Code is available for review.
