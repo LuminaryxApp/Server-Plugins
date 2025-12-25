@@ -21,6 +21,7 @@ dependencies {
     compileOnly 'io.papermc.paper:paper-api:1.20.1-R0.1-SNAPSHOT'
     compileOnly 'com.github.MilkBowl:VaultAPI:1.7.1'
     compileOnly files('C:/Servers/Paper/plugins/LuminaryCore-1.0.0.jar')
+    compileOnly files('C:/Servers/Paper/plugins/LuminaryMines-1.0.0.jar')
 }
 
 processResources {

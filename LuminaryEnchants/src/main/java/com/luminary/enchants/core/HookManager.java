@@ -2,11 +2,15 @@ package com.luminary.enchants.core;
 
 import com.luminary.enchants.LuminaryEnchants;
 import com.luminary.enchants.api.BeaconEffectProvider;
+import com.luminary.enchants.api.MineRegionProvider;
 import com.luminary.enchants.api.TokenEconomy;
 import com.luminary.enchants.core.hooks.DefaultBeaconProvider;
+import com.luminary.enchants.core.hooks.DefaultMineRegionProvider;
 import com.luminary.enchants.core.hooks.DisabledTokenEconomy;
 import com.luminary.enchants.core.hooks.LuminaryEconomyHook;
+import com.luminary.enchants.core.hooks.LuminaryMinesHook;
 import com.luminary.enchants.core.hooks.VaultTokenEconomy;
+import com.luminary.mines.LuminaryMines;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
@@ -17,6 +21,7 @@ public class HookManager {
     private final LuminaryEnchants plugin;
     private TokenEconomy tokenEconomy;
     private BeaconEffectProvider beaconProvider;
+    private MineRegionProvider mineRegionProvider;
 
     public HookManager(LuminaryEnchants plugin) {
         this.plugin = plugin;
@@ -25,6 +30,7 @@ public class HookManager {
     public void initialize() {
         setupTokenEconomy();
         setupBeaconProvider();
+        setupMineRegionProvider();
     }
 
     private void setupTokenEconomy() {
@@ -95,6 +101,24 @@ public class HookManager {
         beaconProvider = new DefaultBeaconProvider();
     }
 
+    private void setupMineRegionProvider() {
+        // Try to hook into LuminaryMines
+        Plugin luminaryMines = Bukkit.getPluginManager().getPlugin("LuminaryMines");
+        if (luminaryMines != null && luminaryMines.isEnabled()) {
+            try {
+                mineRegionProvider = new LuminaryMinesHook((LuminaryMines) luminaryMines);
+                plugin.getLogger().info("Hooked into LuminaryMines for mine region protection!");
+                return;
+            } catch (Exception e) {
+                plugin.getLogger().warning("Failed to hook into LuminaryMines: " + e.getMessage());
+            }
+        }
+
+        // Use default (allows breaking everywhere)
+        mineRegionProvider = new DefaultMineRegionProvider();
+        plugin.getLogger().info("No mine plugin found - enchants can break blocks anywhere.");
+    }
+
     public TokenEconomy getTokenEconomy() {
         return tokenEconomy;
     }
@@ -103,12 +127,20 @@ public class HookManager {
         return beaconProvider;
     }
 
+    public MineRegionProvider getMineRegionProvider() {
+        return mineRegionProvider;
+    }
+
     public boolean isTokenEconomyAvailable() {
         return tokenEconomy != null && tokenEconomy.isAvailable();
     }
 
     public boolean isBeaconProviderAvailable() {
         return beaconProvider != null && beaconProvider.isAvailable();
+    }
+
+    public boolean isMineRegionProviderAvailable() {
+        return mineRegionProvider != null && mineRegionProvider.isAvailable();
     }
 
     public String getTokenEconomyType() {

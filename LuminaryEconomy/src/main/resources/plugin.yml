@@ -5,7 +5,7 @@ api-version: '1.20'
 authors: [Luminary]
 description: Multi-currency economy system with scoreboard sidebar for prison servers
 depend: [LuminaryCore]
-softdepend: [PlaceholderAPI, LuminaryEnchants, LuminaryCrates]
+softdepend: [PlaceholderAPI, LuminaryEnchants, LuminaryCrates, LuminaryRanks, LuminaryGroups]
 
 commands:
   economy:

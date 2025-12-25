@@ -4,9 +4,17 @@ import com.luminary.economy.LuminaryEconomy;
 import com.luminary.economy.currency.Currency;
 import com.luminary.economy.data.PlayerData;
 import com.luminary.economy.util.TextUtil;
+import com.luminary.ranks.LuminaryRanks;
+import com.luminary.ranks.data.PlayerRankData;
+import com.luminary.ranks.rank.Rank;
+import com.luminary.ranks.rank.Prestige;
+import com.luminary.ranks.rank.Rebirth;
+import com.luminary.groups.LuminaryGroups;
+import com.luminary.groups.group.Group;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.scoreboard.*;
 
@@ -23,10 +31,42 @@ public class ScoreboardManager {
 
     private String title;
     private List<String> lines;
+    private LuminaryRanks ranksPlugin;
+    private LuminaryGroups groupsPlugin;
+    private boolean hooksInitialized = false;
 
     public ScoreboardManager(LuminaryEconomy plugin) {
         this.plugin = plugin;
         loadConfig();
+    }
+
+    private void ensureHooksInitialized() {
+        if (hooksInitialized) {
+            return;
+        }
+
+        // Hook LuminaryRanks
+        if (ranksPlugin == null) {
+            Plugin ranks = Bukkit.getPluginManager().getPlugin("LuminaryRanks");
+            if (ranks != null && ranks.isEnabled()) {
+                ranksPlugin = (LuminaryRanks) ranks;
+                plugin.getLogger().info("Hooked into LuminaryRanks for scoreboard!");
+            }
+        }
+
+        // Hook LuminaryGroups
+        if (groupsPlugin == null) {
+            Plugin groups = Bukkit.getPluginManager().getPlugin("LuminaryGroups");
+            if (groups != null && groups.isEnabled()) {
+                groupsPlugin = (LuminaryGroups) groups;
+                plugin.getLogger().info("Hooked into LuminaryGroups for scoreboard!");
+            }
+        }
+
+        // Mark as initialized once both are checked
+        if (ranksPlugin != null && groupsPlugin != null) {
+            hooksInitialized = true;
+        }
     }
 
     public void loadConfig() {
@@ -116,6 +156,9 @@ public class ScoreboardManager {
      * Update the scoreboard for a player.
      */
     public void updateScoreboard(Player player) {
+        // Ensure plugin hooks are initialized (lazy init for load order)
+        ensureHooksInitialized();
+
         Scoreboard scoreboard = playerScoreboards.get(player.getUniqueId());
         if (scoreboard == null) {
             createScoreboard(player);
@@ -143,18 +186,21 @@ public class ScoreboardManager {
         for (String line : lines) {
             String parsed = replacePlaceholders(line, player);
 
+            // Convert color codes for scoreboard
+            String colorized = TextUtil.colorizeString(parsed);
+
             // Ensure unique entries
-            while (usedEntries.contains(parsed)) {
-                parsed = parsed + " ";
+            while (usedEntries.contains(colorized)) {
+                colorized = colorized + " ";
             }
-            usedEntries.add(parsed);
+            usedEntries.add(colorized);
 
-            // Truncate if too long (scoreboard entry limit)
-            if (parsed.length() > 40) {
-                parsed = parsed.substring(0, 40);
+            // Truncate if too long (scoreboard entry limit is 40 chars)
+            if (colorized.length() > 40) {
+                colorized = colorized.substring(0, 40);
             }
 
-            objective.getScore(parsed).setScore(score);
+            objective.getScore(colorized).setScore(score);
             score--;
         }
     }
@@ -215,9 +261,16 @@ public class ScoreboardManager {
             line = line.replace("{" + id + "_icon}", getIconChar(currency));
         }
 
-        // Rank placeholder (would integrate with LuckPerms/Vault if available)
+        // Rank placeholders (integrated with LuminaryRanks)
         line = line.replace("{rank}", getRank(player));
         line = line.replace("{prefix}", getPrefix(player));
+        line = line.replace("{prestige}", getPrestige(player));
+        line = line.replace("{rebirth}", getRebirth(player));
+
+        // Group placeholders (integrated with LuminaryGroups)
+        line = line.replace("{group}", getGroup(player));
+        line = line.replace("{group_prefix}", getGroupPrefix(player));
+        line = line.replace("{group_suffix}", getGroupSuffix(player));
 
         // Empty line placeholder
         if (line.trim().isEmpty() || line.equals("&r")) {
@@ -260,8 +313,21 @@ public class ScoreboardManager {
     }
 
     private String getRank(Player player) {
-        // Would integrate with LuckPerms/Vault
-        // For now, return a default
+        // Try LuminaryRanks first
+        if (ranksPlugin != null) {
+            try {
+                PlayerRankData rankData = ranksPlugin.getPlayerDataManager().getPlayerData(player.getUniqueId());
+                if (rankData != null) {
+                    Rank rank = ranksPlugin.getRankManager().getRank(rankData.getCurrentRank());
+                    if (rank != null) {
+                        return rank.getDisplayName();
+                    }
+                }
+            } catch (Exception ignored) {
+            }
+        }
+
+        // Fallback to permission-based
         if (player.isOp()) return "&c&lOwner";
         if (player.hasPermission("group.admin")) return "&4Admin";
         if (player.hasPermission("group.mod")) return "&9Mod";
@@ -270,7 +336,92 @@ public class ScoreboardManager {
     }
 
     private String getPrefix(Player player) {
-        // Would integrate with LuckPerms/Vault
+        // Try LuminaryRanks first
+        if (ranksPlugin != null) {
+            try {
+                PlayerRankData rankData = ranksPlugin.getPlayerDataManager().getPlayerData(player.getUniqueId());
+                if (rankData != null) {
+                    Rank rank = ranksPlugin.getRankManager().getRank(rankData.getCurrentRank());
+                    if (rank != null) {
+                        return rank.getPrefix();
+                    }
+                }
+            } catch (Exception ignored) {
+            }
+        }
+        return "";
+    }
+
+    private String getPrestige(Player player) {
+        if (ranksPlugin != null) {
+            try {
+                PlayerRankData rankData = ranksPlugin.getPlayerDataManager().getPlayerData(player.getUniqueId());
+                if (rankData != null) {
+                    int prestigeLevel = rankData.getPrestigeLevel();
+                    if (prestigeLevel > 0) {
+                        Prestige prestige = ranksPlugin.getRankManager().getPrestige(prestigeLevel);
+                        if (prestige != null) {
+                            return prestige.getDisplayName();
+                        }
+                        return "&5P" + prestigeLevel;
+                    }
+                }
+            } catch (Exception ignored) {
+            }
+        }
+        return "&7None";
+    }
+
+    private String getRebirth(Player player) {
+        if (ranksPlugin != null) {
+            try {
+                PlayerRankData rankData = ranksPlugin.getPlayerDataManager().getPlayerData(player.getUniqueId());
+                if (rankData != null) {
+                    int rebirthLevel = rankData.getRebirthLevel();
+                    if (rebirthLevel > 0) {
+                        Rebirth rebirth = ranksPlugin.getRankManager().getRebirth(rebirthLevel);
+                        if (rebirth != null) {
+                            return rebirth.getDisplayName();
+                        }
+                        return "&c\u2605" + rebirthLevel;
+                    }
+                }
+            } catch (Exception ignored) {
+            }
+        }
+        return "&7None";
+    }
+
+    private String getGroup(Player player) {
+        if (groupsPlugin != null) {
+            try {
+                Group group = groupsPlugin.getPlayerDataManager().getEffectiveGroup(player.getUniqueId());
+                if (group != null) {
+                    return group.getDisplayName();
+                }
+            } catch (Exception ignored) {
+            }
+        }
+        return "&7Default";
+    }
+
+    private String getGroupPrefix(Player player) {
+        if (groupsPlugin != null) {
+            try {
+                return groupsPlugin.getPlayerDataManager().getPrefix(player.getUniqueId());
+            } catch (Exception ignored) {
+            }
+        }
+        return "";
+    }
+
+    private String getGroupSuffix(Player player) {
+        if (groupsPlugin != null) {
+            try {
+                return groupsPlugin.getPlayerDataManager().getSuffix(player.getUniqueId());
+            } catch (Exception ignored) {
+            }
+        }
         return "";
     }
 

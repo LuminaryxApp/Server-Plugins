@@ -1,0 +1,41 @@
+# ===========================================
+# LuminaryEnchants Messages
+# Customize all plugin messages here
+# ===========================================
+
+messages:
+  # General
+  prefix: "&5&lLuminaryEnchants &8\u00BB &7"
+  no-permission: "&cYou don't have permission to do this!"
+  player-only: "&cThis command can only be used by players!"
+
+  # Pickaxe requirements
+  must-hold-pickaxe: "&cYou must be holding a pickaxe!"
+  not-a-pickaxe: "&cThat item is not a valid pickaxe!"
+
+  # Economy
+  economy-unavailable: "&cToken economy is currently unavailable!"
+  insufficient-tokens: "&cYou don't have enough tokens!"
+
+  # Upgrades
+  upgrade-success: "&a&lSUCCESS! &7{enchant} upgraded to level &a{level}&7!"
+  upgrade-failed: "&c&lFAILED! &7The upgrade failed."
+  upgrade-failed-downgrade: "&c&lFAILED! &7The upgrade failed and you lost a level! Now at level &e{level}&7."
+  upgrade-failed-remove: "&c&lFAILED! &7The upgrade failed catastrophically! &cEnchant removed!"
+  already-max-level: "&cThis enchant is already at maximum level!"
+
+  # Admin
+  enchant-applied: "&aApplied {enchant} level {level} to your pickaxe!"
+  enchant-removed: "&aRemoved {enchant} from your pickaxe!"
+  enchants-cleared: "&aCleared all custom enchants from your pickaxe!"
+  config-reloaded: "&aLuminaryEnchants configuration reloaded!"
+
+  # Errors
+  unknown-enchant: "&cUnknown enchant: {enchant}"
+  invalid-level: "&cInvalid level: {level}"
+  level-out-of-range: "&cLevel must be between 0 and {max}!"
+
+  # GUI
+  gui-main-title: "&5&lPickaxe Enchants"
+  gui-enchants-title: "&5&lEnchants"
+  gui-confirm-title: "&5&lConfirm Upgrade"

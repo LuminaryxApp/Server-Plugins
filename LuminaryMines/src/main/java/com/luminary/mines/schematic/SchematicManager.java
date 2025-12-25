@@ -95,13 +95,26 @@ public class SchematicManager {
 
     private void loadSchematicRegion(String schematicId, MineSchematic schematic) {
         if (regionsConfig.isConfigurationSection(schematicId)) {
-            int minX = regionsConfig.getInt(schematicId + ".min-x");
-            int minY = regionsConfig.getInt(schematicId + ".min-y");
-            int minZ = regionsConfig.getInt(schematicId + ".min-z");
-            int maxX = regionsConfig.getInt(schematicId + ".max-x");
-            int maxY = regionsConfig.getInt(schematicId + ".max-y");
-            int maxZ = regionsConfig.getInt(schematicId + ".max-z");
-            schematic.setCustomRegion(minX, minY, minZ, maxX, maxY, maxZ);
+            // Load region if defined
+            if (regionsConfig.contains(schematicId + ".min-x")) {
+                int minX = regionsConfig.getInt(schematicId + ".min-x");
+                int minY = regionsConfig.getInt(schematicId + ".min-y");
+                int minZ = regionsConfig.getInt(schematicId + ".min-z");
+                int maxX = regionsConfig.getInt(schematicId + ".max-x");
+                int maxY = regionsConfig.getInt(schematicId + ".max-y");
+                int maxZ = regionsConfig.getInt(schematicId + ".max-z");
+                schematic.setCustomRegion(minX, minY, minZ, maxX, maxY, maxZ);
+            }
+
+            // Load spawn if defined
+            if (regionsConfig.contains(schematicId + ".spawn-x")) {
+                double spawnX = regionsConfig.getDouble(schematicId + ".spawn-x");
+                double spawnY = regionsConfig.getDouble(schematicId + ".spawn-y");
+                double spawnZ = regionsConfig.getDouble(schematicId + ".spawn-z");
+                float spawnYaw = (float) regionsConfig.getDouble(schematicId + ".spawn-yaw", 0);
+                float spawnPitch = (float) regionsConfig.getDouble(schematicId + ".spawn-pitch", 0);
+                schematic.setCustomSpawn(spawnX, spawnY, spawnZ, spawnYaw, spawnPitch);
+            }
         }
     }
 
@@ -112,11 +125,82 @@ public class SchematicManager {
         regionsConfig.set(schematicId + ".max-x", maxX);
         regionsConfig.set(schematicId + ".max-y", maxY);
         regionsConfig.set(schematicId + ".max-z", maxZ);
+        saveRegionsConfig();
+    }
+
+    private void saveSchematicSpawn(String schematicId, double offsetX, double offsetY, double offsetZ, float yaw, float pitch) {
+        regionsConfig.set(schematicId + ".spawn-x", offsetX);
+        regionsConfig.set(schematicId + ".spawn-y", offsetY);
+        regionsConfig.set(schematicId + ".spawn-z", offsetZ);
+        regionsConfig.set(schematicId + ".spawn-yaw", yaw);
+        regionsConfig.set(schematicId + ".spawn-pitch", pitch);
+        saveRegionsConfig();
+    }
+
+    private void saveRegionsConfig() {
         try {
             regionsConfig.save(regionsFile);
         } catch (IOException e) {
             plugin.getLogger().warning("Could not save schematic-regions.yml: " + e.getMessage());
         }
+    }
+
+    /**
+     * Set the spawn point for a schematic using the player's current location.
+     *
+     * @param player The player at the spawn location
+     * @param schematicName The schematic to configure
+     * @param pasteOrigin Where the schematic was pasted (for calculating offsets)
+     * @return true if successful
+     */
+    public boolean setSchematicSpawn(Player player, String schematicName, Location pasteOrigin) {
+        MineSchematic schematic = getSchematic(schematicName);
+        if (schematic == null) {
+            return false;
+        }
+
+        Location playerLoc = player.getLocation();
+
+        // Calculate spawn offset relative to schematic origin
+        Clipboard clipboard = schematic.getClipboard();
+        BlockVector3 clipMin = clipboard.getMinimumPoint();
+        BlockVector3 origin = clipboard.getOrigin();
+        BlockVector3 offset = origin.subtract(clipMin);
+
+        // The paste origin minus the offset gives us the schematic's min corner world position
+        double schematicMinX = pasteOrigin.getBlockX() - offset.getBlockX();
+        double schematicMinY = pasteOrigin.getBlockY() - offset.getBlockY();
+        double schematicMinZ = pasteOrigin.getBlockZ() - offset.getBlockZ();
+
+        // Calculate spawn offsets relative to schematic min corner
+        double spawnOffsetX = playerLoc.getX() - schematicMinX;
+        double spawnOffsetY = playerLoc.getY() - schematicMinY;
+        double spawnOffsetZ = playerLoc.getZ() - schematicMinZ;
+
+        // Save to schematic and config
+        schematic.setCustomSpawn(spawnOffsetX, spawnOffsetY, spawnOffsetZ, playerLoc.getYaw(), playerLoc.getPitch());
+        saveSchematicSpawn(schematicName.toLowerCase(), spawnOffsetX, spawnOffsetY, spawnOffsetZ, playerLoc.getYaw(), playerLoc.getPitch());
+
+        return true;
+    }
+
+    /**
+     * Clear the custom spawn for a schematic.
+     */
+    public boolean clearSchematicSpawn(String schematicName) {
+        MineSchematic schematic = getSchematic(schematicName);
+        if (schematic == null) {
+            return false;
+        }
+
+        schematic.clearCustomSpawn();
+        regionsConfig.set(schematicName.toLowerCase() + ".spawn-x", null);
+        regionsConfig.set(schematicName.toLowerCase() + ".spawn-y", null);
+        regionsConfig.set(schematicName.toLowerCase() + ".spawn-z", null);
+        regionsConfig.set(schematicName.toLowerCase() + ".spawn-yaw", null);
+        regionsConfig.set(schematicName.toLowerCase() + ".spawn-pitch", null);
+        saveRegionsConfig();
+        return true;
     }
 
     private MineSchematic loadSchematic(File file) throws IOException {
@@ -307,11 +391,22 @@ public class SchematicManager {
 
             mine.setBounds(minX, minY, minZ, maxX, maxY, maxZ);
 
-            // Set spawn point at the top center of the mine
-            double spawnX = (minX + maxX) / 2.0 + 0.5;
-            double spawnY = maxY + 2;
-            double spawnZ = (minZ + maxZ) / 2.0 + 0.5;
-            mine.setSpawn(new Location(bukkitWorld, spawnX, spawnY, spawnZ));
+            // Set spawn point
+            if (schematic.hasCustomSpawn()) {
+                // Use custom spawn offset
+                double spawnX = minX + schematic.getSpawnOffsetX();
+                double spawnY = minY + schematic.getSpawnOffsetY();
+                double spawnZ = minZ + schematic.getSpawnOffsetZ();
+                Location spawn = new Location(bukkitWorld, spawnX, spawnY, spawnZ,
+                        schematic.getSpawnYaw(), schematic.getSpawnPitch());
+                mine.setSpawn(spawn);
+            } else {
+                // Default: top center of the mine
+                double spawnX = (minX + maxX) / 2.0 + 0.5;
+                double spawnY = maxY + 2;
+                double spawnZ = (minZ + maxZ) / 2.0 + 0.5;
+                mine.setSpawn(new Location(bukkitWorld, spawnX, spawnY, spawnZ));
+            }
 
             return true;
 

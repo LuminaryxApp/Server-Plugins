@@ -108,10 +108,7 @@ public class MineResetTask {
             );
         }
 
-        // Teleport players out of the mine before reset
-        teleportPlayersOut(mine);
-
-        // Fill the mine with blocks
+        // Fill the mine with blocks (players stay in place)
         fillMine(mine, region);
 
         // Mark as reset

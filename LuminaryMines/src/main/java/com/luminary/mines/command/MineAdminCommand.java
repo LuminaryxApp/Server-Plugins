@@ -54,6 +54,8 @@ public class MineAdminCommand implements CommandExecutor, TabCompleter {
             case "setregion" -> handleSetRegion(sender, args);
             case "clearregion" -> handleClearRegion(sender, args);
             case "paste" -> handlePaste(sender, args);
+            case "setspawn" -> handleSetSpawn(sender, args);
+            case "clearspawn" -> handleClearSpawn(sender, args);
             default -> sendHelp(sender);
         }
 
@@ -75,6 +77,8 @@ public class MineAdminCommand implements CommandExecutor, TabCompleter {
         sender.sendMessage(TextUtil.colorize("&e/mineadmin paste <schematic> &7- Paste schematic at your location"));
         sender.sendMessage(TextUtil.colorize("&e/mineadmin setregion <schematic> &7- Set mine region (use WE selection)"));
         sender.sendMessage(TextUtil.colorize("&e/mineadmin clearregion <schematic> &7- Clear custom region"));
+        sender.sendMessage(TextUtil.colorize("&e/mineadmin setspawn <schematic> &7- Set spawn point (stand at spawn)"));
+        sender.sendMessage(TextUtil.colorize("&e/mineadmin clearspawn <schematic> &7- Clear custom spawn"));
         sender.sendMessage(TextUtil.colorize("&e/mineadmin reload &7- Reload configuration"));
         sender.sendMessage(TextUtil.colorize("&6&l━━━━━━━━━━━━━━━━━━━━━━━━━━━"));
     }
@@ -410,6 +414,57 @@ public class MineAdminCommand implements CommandExecutor, TabCompleter {
         }
     }
 
+    private void handleSetSpawn(CommandSender sender, String[] args) {
+        if (!(sender instanceof Player player)) {
+            sender.sendMessage(TextUtil.colorize("&cThis command can only be used by players!"));
+            return;
+        }
+
+        if (args.length < 2) {
+            sender.sendMessage(TextUtil.colorize("&cUsage: /mineadmin setspawn <schematic>"));
+            return;
+        }
+
+        String schematicName = args[1].toLowerCase();
+
+        if (plugin.getSchematicManager().getSchematic(schematicName) == null) {
+            sender.sendMessage(TextUtil.colorize("&cSchematic not found: " + schematicName));
+            return;
+        }
+
+        // Get stored paste location
+        PasteInfo pasteInfo = pasteLocations.get(player.getUniqueId());
+        if (pasteInfo == null || !pasteInfo.schematic().equals(schematicName)) {
+            sender.sendMessage(TextUtil.colorize("&cYou must first paste this schematic with &e/mineadmin paste " + schematicName));
+            return;
+        }
+
+        boolean success = plugin.getSchematicManager().setSchematicSpawn(player, schematicName, pasteInfo.location());
+
+        if (success) {
+            sender.sendMessage(TextUtil.colorize("&aSpawn point set for schematic: " + schematicName));
+            sender.sendMessage(TextUtil.colorize("&7Players will spawn here when creating a mine with this schematic."));
+        } else {
+            sender.sendMessage(TextUtil.colorize("&cFailed to set spawn point!"));
+        }
+    }
+
+    private void handleClearSpawn(CommandSender sender, String[] args) {
+        if (args.length < 2) {
+            sender.sendMessage(TextUtil.colorize("&cUsage: /mineadmin clearspawn <schematic>"));
+            return;
+        }
+
+        String schematicName = args[1].toLowerCase();
+
+        if (plugin.getSchematicManager().clearSchematicSpawn(schematicName)) {
+            sender.sendMessage(TextUtil.colorize("&aCleared custom spawn for: " + schematicName));
+            sender.sendMessage(TextUtil.colorize("&7Will use default spawn (top center of mine)."));
+        } else {
+            sender.sendMessage(TextUtil.colorize("&cSchematic not found: " + schematicName));
+        }
+    }
+
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         List<String> completions = new ArrayList<>();
@@ -421,7 +476,7 @@ public class MineAdminCommand implements CommandExecutor, TabCompleter {
         if (args.length == 1) {
             completions.addAll(Arrays.asList("help", "create", "delete", "reset", "resetall",
                     "tp", "list", "info", "settier", "schematics", "reload",
-                    "paste", "setregion", "clearregion"));
+                    "paste", "setregion", "clearregion", "setspawn", "clearspawn"));
         } else if (args.length == 2) {
             String sub = args[0].toLowerCase();
             if (sub.equals("create") || sub.equals("delete") || sub.equals("reset") ||
@@ -436,7 +491,8 @@ public class MineAdminCommand implements CommandExecutor, TabCompleter {
                         completions.add(p.getName());
                     }
                 }
-            } else if (sub.equals("paste") || sub.equals("setregion") || sub.equals("clearregion")) {
+            } else if (sub.equals("paste") || sub.equals("setregion") || sub.equals("clearregion") ||
+                       sub.equals("setspawn") || sub.equals("clearspawn")) {
                 completions.addAll(plugin.getSchematicManager().getSchematicNames());
             }
         } else if (args.length == 3) {

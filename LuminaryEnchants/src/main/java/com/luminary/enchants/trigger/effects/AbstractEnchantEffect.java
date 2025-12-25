@@ -2,6 +2,7 @@ package com.luminary.enchants.trigger.effects;
 
 import com.luminary.enchants.LuminaryEnchants;
 import com.luminary.enchants.api.BeaconEffectProvider;
+import com.luminary.enchants.api.MineRegionProvider;
 import com.luminary.enchants.api.TokenEconomy;
 import com.luminary.enchants.pickaxe.EnchantDefinition;
 import com.luminary.enchants.trigger.ProcEngine;
@@ -37,6 +38,13 @@ public abstract class AbstractEnchantEffect implements EnchantEffect {
      */
     protected BeaconEffectProvider getBeaconProvider() {
         return plugin.getHookManager().getBeaconProvider();
+    }
+
+    /**
+     * Get the mine region provider instance.
+     */
+    protected MineRegionProvider getMineRegionProvider() {
+        return plugin.getHookManager().getMineRegionProvider();
     }
 
     /**
@@ -171,12 +179,23 @@ public abstract class AbstractEnchantEffect implements EnchantEffect {
     }
 
     /**
-     * Check if player can break a block (basic protection check).
+     * Check if player can break a block (with mine region protection).
      */
     protected boolean canBreak(Player player, Block block) {
-        // Basic check - could integrate with WorldGuard here
-        return !block.getType().isAir() &&
-                block.getType().getHardness() >= 0; // Not unbreakable
+        // Basic checks
+        if (block.getType().isAir()) return false;
+        if (block.getType().getHardness() < 0) return false; // Unbreakable
+
+        // Check mine region protection
+        MineRegionProvider mineProvider = getMineRegionProvider();
+        if (mineProvider != null && mineProvider.isAvailable()) {
+            // Only allow breaking within mine interior regions
+            if (!mineProvider.canPlayerBreakAt(player, block.getLocation())) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**

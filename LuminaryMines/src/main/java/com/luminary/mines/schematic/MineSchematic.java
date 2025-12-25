@@ -20,6 +20,11 @@ public class MineSchematic {
     private int regionOffsetMinX, regionOffsetMinY, regionOffsetMinZ;
     private int regionOffsetMaxX, regionOffsetMaxY, regionOffsetMaxZ;
 
+    // Custom spawn point (offsets from schematic origin)
+    private boolean hasCustomSpawn = false;
+    private double spawnOffsetX, spawnOffsetY, spawnOffsetZ;
+    private float spawnYaw, spawnPitch;
+
     public MineSchematic(String name, Clipboard clipboard) {
         this.name = name;
         this.clipboard = clipboard;
@@ -112,4 +117,37 @@ public class MineSchematic {
         int interiorLength = Math.max(0, length - (wallThickness * 2));
         return interiorWidth * interiorHeight * interiorLength;
     }
+
+    /**
+     * Check if this schematic has a custom spawn point.
+     */
+    public boolean hasCustomSpawn() {
+        return hasCustomSpawn;
+    }
+
+    /**
+     * Set the custom spawn offset (relative to schematic origin).
+     */
+    public void setCustomSpawn(double offsetX, double offsetY, double offsetZ, float yaw, float pitch) {
+        this.spawnOffsetX = offsetX;
+        this.spawnOffsetY = offsetY;
+        this.spawnOffsetZ = offsetZ;
+        this.spawnYaw = yaw;
+        this.spawnPitch = pitch;
+        this.hasCustomSpawn = true;
+    }
+
+    /**
+     * Clear the custom spawn (fall back to default calculation).
+     */
+    public void clearCustomSpawn() {
+        this.hasCustomSpawn = false;
+    }
+
+    // Spawn offset getters
+    public double getSpawnOffsetX() { return spawnOffsetX; }
+    public double getSpawnOffsetY() { return spawnOffsetY; }
+    public double getSpawnOffsetZ() { return spawnOffsetZ; }
+    public float getSpawnYaw() { return spawnYaw; }
+    public float getSpawnPitch() { return spawnPitch; }
 }

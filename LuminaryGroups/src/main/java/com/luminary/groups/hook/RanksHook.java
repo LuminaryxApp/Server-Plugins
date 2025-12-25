@@ -1,12 +1,14 @@
 package com.luminary.groups.hook;
 
 import com.luminary.groups.LuminaryGroups;
+import com.luminary.ranks.LuminaryRanks;
+import com.luminary.ranks.data.PlayerRankData;
+import com.luminary.ranks.rank.Rank;
+import com.luminary.ranks.rank.Prestige;
+import com.luminary.ranks.rank.Rebirth;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-
-import java.lang.reflect.Method;
-import java.util.UUID;
 
 /**
  * Hook into LuminaryRanks for combined prefix display.
@@ -14,17 +16,7 @@ import java.util.UUID;
 public class RanksHook {
 
     private final LuminaryGroups plugin;
-    private Plugin ranksPlugin;
-    private Object rankManager;
-    private Object playerDataManager;
-    private Method getPlayerDataMethod;
-    private Method getEffectiveRankMethod;
-    private Method getRankPrefixMethod;
-    private Method getPrestigeMethod;
-    private Method getRebirthMethod;
-    private Method getPrestigePrefixMethod;
-    private Method getRebirthPrefixMethod;
-
+    private LuminaryRanks ranksPlugin;
     private boolean hooked = false;
 
     public RanksHook(LuminaryGroups plugin) {
@@ -32,39 +24,14 @@ public class RanksHook {
     }
 
     public void hook() {
-        ranksPlugin = Bukkit.getPluginManager().getPlugin("LuminaryRanks");
-        if (ranksPlugin == null || !ranksPlugin.isEnabled()) {
+        Plugin ranks = Bukkit.getPluginManager().getPlugin("LuminaryRanks");
+        if (ranks == null || !ranks.isEnabled()) {
             plugin.getLogger().info("LuminaryRanks not found. Running standalone.");
             return;
         }
 
         try {
-            // Get managers via reflection
-            Method getRankManager = ranksPlugin.getClass().getMethod("getRankManager");
-            rankManager = getRankManager.invoke(ranksPlugin);
-
-            Method getPlayerDataManagerMethod = ranksPlugin.getClass().getMethod("getPlayerDataManager");
-            playerDataManager = getPlayerDataManagerMethod.invoke(ranksPlugin);
-
-            // Get methods for player data
-            getPlayerDataMethod = playerDataManager.getClass().getMethod("getPlayerData", UUID.class);
-
-            // Get methods for rank info
-            Class<?> playerDataClass = Class.forName("com.luminary.ranks.player.PlayerRankData");
-            getEffectiveRankMethod = playerDataClass.getMethod("getEffectiveRank");
-            getPrestigeMethod = playerDataClass.getMethod("getPrestige");
-            getRebirthMethod = playerDataClass.getMethod("getRebirth");
-
-            // Get methods for rank/prestige/rebirth objects
-            Class<?> rankClass = Class.forName("com.luminary.ranks.rank.Rank");
-            getRankPrefixMethod = rankClass.getMethod("getPrefix");
-
-            Class<?> prestigeClass = Class.forName("com.luminary.ranks.rank.Prestige");
-            getPrestigePrefixMethod = prestigeClass.getMethod("getPrefix");
-
-            Class<?> rebirthClass = Class.forName("com.luminary.ranks.rank.Rebirth");
-            getRebirthPrefixMethod = rebirthClass.getMethod("getPrefix");
-
+            ranksPlugin = (LuminaryRanks) ranks;
             hooked = true;
             plugin.getLogger().info("Successfully hooked into LuminaryRanks!");
         } catch (Exception e) {
@@ -81,19 +48,20 @@ public class RanksHook {
      * Get the player's rank prefix from LuminaryRanks.
      */
     public String getRankPrefix(Player player) {
-        if (!hooked) {
+        if (!hooked || ranksPlugin == null) {
             return "";
         }
 
         try {
-            Object playerData = getPlayerDataMethod.invoke(playerDataManager, player.getUniqueId());
+            PlayerRankData playerData = ranksPlugin.getPlayerDataManager().getPlayerData(player.getUniqueId());
             if (playerData == null) {
                 return "";
             }
 
-            Object rank = getEffectiveRankMethod.invoke(playerData);
+            String rankId = playerData.getCurrentRank();
+            Rank rank = ranksPlugin.getRankManager().getRank(rankId);
             if (rank != null) {
-                return (String) getRankPrefixMethod.invoke(rank);
+                return rank.getPrefix();
             }
         } catch (Exception e) {
             // Silently fail
@@ -106,19 +74,22 @@ public class RanksHook {
      * Get the player's prestige prefix from LuminaryRanks.
      */
     public String getPrestigePrefix(Player player) {
-        if (!hooked) {
+        if (!hooked || ranksPlugin == null) {
             return "";
         }
 
         try {
-            Object playerData = getPlayerDataMethod.invoke(playerDataManager, player.getUniqueId());
+            PlayerRankData playerData = ranksPlugin.getPlayerDataManager().getPlayerData(player.getUniqueId());
             if (playerData == null) {
                 return "";
             }
 
-            Object prestige = getPrestigeMethod.invoke(playerData);
-            if (prestige != null) {
-                return (String) getPrestigePrefixMethod.invoke(prestige);
+            int prestigeLevel = playerData.getPrestigeLevel();
+            if (prestigeLevel > 0) {
+                Prestige prestige = ranksPlugin.getRankManager().getPrestige(prestigeLevel);
+                if (prestige != null) {
+                    return prestige.getPrefix();
+                }
             }
         } catch (Exception e) {
             // Silently fail
@@ -131,19 +102,22 @@ public class RanksHook {
      * Get the player's rebirth prefix from LuminaryRanks.
      */
     public String getRebirthPrefix(Player player) {
-        if (!hooked) {
+        if (!hooked || ranksPlugin == null) {
             return "";
         }
 
         try {
-            Object playerData = getPlayerDataMethod.invoke(playerDataManager, player.getUniqueId());
+            PlayerRankData playerData = ranksPlugin.getPlayerDataManager().getPlayerData(player.getUniqueId());
             if (playerData == null) {
                 return "";
             }
 
-            Object rebirth = getRebirthMethod.invoke(playerData);
-            if (rebirth != null) {
-                return (String) getRebirthPrefixMethod.invoke(rebirth);
+            int rebirthLevel = playerData.getRebirthLevel();
+            if (rebirthLevel > 0) {
+                Rebirth rebirth = ranksPlugin.getRankManager().getRebirth(rebirthLevel);
+                if (rebirth != null) {
+                    return rebirth.getPrefix();
+                }
             }
         } catch (Exception e) {
             // Silently fail
@@ -164,19 +138,19 @@ public class RanksHook {
 
         String rebirthPrefix = getRebirthPrefix(player);
         if (!rebirthPrefix.isEmpty()) {
-            display.append(rebirthPrefix);
+            display.append(rebirthPrefix).append(" ");
         }
 
         String prestigePrefix = getPrestigePrefix(player);
         if (!prestigePrefix.isEmpty()) {
-            display.append(prestigePrefix);
+            display.append(prestigePrefix).append(" ");
         }
 
         String rankPrefix = getRankPrefix(player);
         if (!rankPrefix.isEmpty()) {
-            display.append(rankPrefix);
+            display.append(rankPrefix).append(" ");
         }
 
-        return display.toString();
+        return display.toString().trim();
     }
 }
