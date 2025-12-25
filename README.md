@@ -41,7 +41,6 @@ I built this suite to solve that. One ecosystem, one style, everything integrate
 | [**LuminaryEnchants**](./LuminaryEnchants) | Custom pickaxe enchants (Explosive, Laser, Jackhammer, etc.) |
 | [**LuminaryCrates**](./LuminaryCrates) | Virtual crates with spinning animations |
 | [**LuminaryBackpacks**](./LuminaryBackpacks) | Auto-pickup backpacks with auto-sell |
-| [**LuminaryShop**](./LuminaryShop) | GUI shop with sell wands |
 
 ---
 
@@ -67,9 +66,9 @@ I built this suite to solve that. One ecosystem, one style, everything integrate
 ┌─────────────────────────────────────────────────────────┐
 │                                                         │
 │  LuminaryMines ◄─► LuminaryEnchants ◄─► LuminaryBackpacks│
-│       │                   │                    │        │
-│       ▼                   ▼                    ▼        │
-│  LuminaryMiners    LuminaryCrates        LuminaryShop   │
+│       │                   │                             │
+│       ▼                   ▼                             │
+│  LuminaryMiners    LuminaryCrates                       │
 │                                                         │
 └─────────────────────────────────────────────────────────┘
 ```
@@ -78,7 +77,7 @@ I built this suite to solve that. One ecosystem, one style, everything integrate
 - Scoreboard shows rank, prestige, rebirth, group, and all currencies
 - Enchants only break blocks inside mine regions (protects walls/ladders)
 - Crates can reward currency, keys, enchanted picks, rank-ups
-- Backpacks and shop share the same price list
+- Backpacks
 - Chat shows group prefix + rebirth + prestige + rank together
 
 ---
@@ -143,7 +142,6 @@ Server-Plugins/
 ├── LuminaryEnchants/       # Custom pickaxe enchants
 ├── LuminaryCrates/         # Virtual crates
 ├── LuminaryBackpacks/      # Auto-pickup storage
-└── LuminaryShop/           # GUI shop + sell wands
 ```
 
 Each plugin has its own README with detailed documentation.
