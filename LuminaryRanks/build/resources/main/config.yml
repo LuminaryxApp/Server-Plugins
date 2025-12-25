@@ -1,0 +1,26 @@
+# ================================
+#   LuminaryRanks Configuration
+# ================================
+
+# Economy settings
+economy:
+  # Currency to use from LuminaryEconomy
+  currency: "tokens"
+
+# General settings
+settings:
+  # Require confirmation for rankup
+  confirm-rankup: false
+  # Broadcast when player ranks up
+  broadcast-rankup: true
+  # Broadcast prestige
+  broadcast-prestige: true
+  # Broadcast rebirth
+  broadcast-rebirth: true
+  # Auto-save interval (seconds)
+  auto-save-interval: 300
+
+# Integration with LuminaryCrates
+# Crates can give rewards using commands like:
+# /ranks set {player} rank B
+# /ranks set {player} prestige 5

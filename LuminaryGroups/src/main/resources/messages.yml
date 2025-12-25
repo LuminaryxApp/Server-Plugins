@@ -1,0 +1,33 @@
+# LuminaryGroups Messages
+# Use & for color codes, &#RRGGBB for hex colors
+
+prefix: "&6&lGroups &8» &7"
+
+# General messages
+no-permission: "&cYou don't have permission to do that!"
+config-reloaded: "&aConfiguration reloaded successfully!"
+player-not-found: "&cPlayer '{player}' not found!"
+
+# Group management messages
+group-exists: "&cGroup '{group}' already exists!"
+group-not-found: "&cGroup '{group}' does not exist!"
+group-created: "&aGroup '{group}' has been created!"
+group-deleted: "&aGroup '{group}' has been deleted!"
+group-prefix-set: "&aSet prefix for '{group}' to: {prefix}"
+group-suffix-set: "&aSet suffix for '{group}' to: {suffix}"
+group-namecolor-set: "&aSet name color for '{group}' to: {color}"
+group-chatcolor-set: "&aSet chat color for '{group}' to: {color}"
+group-weight-set: "&aSet weight for '{group}' to: {weight}"
+group-displayname-set: "&aSet display name for '{group}' to: {name}"
+group-default-set: "&aSet '{group}' as the default group!"
+
+# Permission messages
+permission-added: "&aAdded permission '{permission}' to group '{group}'!"
+permission-removed: "&aRemoved permission '{permission}' from group '{group}'!"
+inheritance-added: "&aGroup '{group}' now inherits from '{parent}'!"
+inheritance-removed: "&aGroup '{group}' no longer inherits from '{parent}'!"
+
+# Player group messages
+player-group-added: "&aAdded '{player}' to group '{group}'!"
+player-group-removed: "&aRemoved '{player}' from group '{group}'!"
+player-not-in-group: "&c{player} is not in group '{group}'!"

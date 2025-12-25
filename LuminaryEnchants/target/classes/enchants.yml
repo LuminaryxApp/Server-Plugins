@@ -1,0 +1,626 @@
+# ===========================================
+# LuminaryEnchants - Enchant Definitions
+# All pickaxe enchants are defined here
+# ===========================================
+
+enchants:
+
+  # =========================================
+  # KEYFINDER - Chance to find keys
+  # =========================================
+  keyfinder:
+    display: "Keyfinder"
+    description: "Chance to find keys while mining"
+    rarity: RARE
+    maxLevel: 100
+    upgrade:
+      cost:
+        base: 500
+        perLevel: 100
+    trigger: BLOCK_BREAK
+    cooldownMs: 0
+    chance:
+      base: 0.05
+      perLevel: 0.005
+      cap: 0.50
+    params:
+      keysBase: 1
+      keysPerLevel: 0
+      keyType: "crate_basic"
+      convertToTokens: false
+      tokensPerKey: 100
+
+  # =========================================
+  # ENHANCER - Boost proc chance temporarily
+  # =========================================
+  enhancer:
+    display: "Enhancer"
+    description: "Temporarily increases proc chance of all enchants"
+    rarity: EPIC
+    maxLevel: 50
+    upgrade:
+      cost:
+        base: 1000
+        perLevel: 200
+    trigger: BLOCK_BREAK
+    cooldownMs: 5000
+    chance:
+      base: 0.03
+      perLevel: 0.002
+      cap: 0.15
+    params:
+      durationTicks: 100
+      procChanceBonus: 0.1
+
+  # =========================================
+  # PIGGY BANK - Store and bonus tokens
+  # =========================================
+  piggy_bank:
+    display: "Piggy Bank"
+    description: "Stores tokens and pays out with bonus"
+    rarity: UNCOMMON
+    maxLevel: 100
+    upgrade:
+      cost:
+        base: 300
+        perLevel: 50
+    trigger: BLOCK_BREAK
+    cooldownMs: 0
+    chance:
+      base: 0.10
+      perLevel: 0.005
+      cap: 0.60
+    params:
+      storePercent: 0.1
+      payoutThreshold: 10000
+      payoutBonusPercent: 0.15
+      baseTokensPerBlock: 10
+
+  # =========================================
+  # THOR - Lightning strike AOE
+  # =========================================
+  thor:
+    display: "Thor"
+    description: "Summon lightning to break blocks in an area"
+    rarity: LEGENDARY
+    maxLevel: 50
+    upgrade:
+      cost:
+        base: 5000
+        perLevel: 500
+    trigger: BLOCK_BREAK
+    cooldownMs: 3000
+    chance:
+      base: 0.02
+      perLevel: 0.003
+      cap: 0.20
+    params:
+      radius: 2
+      maxBlocks: 64
+      dropMode: "INVENTORY"
+
+  # =========================================
+  # TOWER - Vertical mining
+  # =========================================
+  tower:
+    display: "Tower"
+    description: "Mine blocks vertically upward"
+    rarity: UNCOMMON
+    maxLevel: 100
+    upgrade:
+      cost:
+        base: 200
+        perLevel: 30
+    trigger: BLOCK_BREAK
+    cooldownMs: 500
+    chance:
+      base: 0.08
+      perLevel: 0.004
+      cap: 0.50
+    params:
+      height: 5
+      maxBlocks: 10
+      requiresSneak: false
+
+  # =========================================
+  # FREEZE - Mining speed boost
+  # =========================================
+  freeze:
+    display: "Freeze"
+    description: "Grant Haste effect while mining"
+    rarity: RARE
+    maxLevel: 50
+    upgrade:
+      cost:
+        base: 800
+        perLevel: 150
+    trigger: BLOCK_BREAK
+    cooldownMs: 10000
+    chance:
+      base: 0.03
+      perLevel: 0.002
+      cap: 0.15
+    params:
+      durationTicks: 200
+      hasteAmplifierFallback: 1
+
+  # =========================================
+  # SECOND HAND - Extra proc roll
+  # =========================================
+  second_hand:
+    display: "Second Hand"
+    description: "Chance to trigger another enchant proc"
+    rarity: EPIC
+    maxLevel: 100
+    upgrade:
+      cost:
+        base: 2000
+        perLevel: 300
+    trigger: BLOCK_BREAK
+    cooldownMs: 0
+    chance:
+      base: 0.05
+      perLevel: 0.003
+      cap: 0.40
+    params:
+      extraRollChanceBase: 0.5
+      extraRollChancePerLevel: 0.01
+
+  # =========================================
+  # POISON - Ore bonus / Stone penalty
+  # =========================================
+  poison:
+    display: "Poison"
+    description: "Increase ore yields but reduce stone drops"
+    rarity: RARE
+    maxLevel: 50
+    upgrade:
+      cost:
+        base: 1500
+        perLevel: 250
+    trigger: BLOCK_BREAK
+    cooldownMs: 15000
+    chance:
+      base: 0.02
+      perLevel: 0.002
+      cap: 0.12
+    params:
+      oreBonusMultiplier: 1.5
+      stonePenaltyMultiplier: 0.5
+      durationTicks: 200
+
+  # =========================================
+  # SONIC - Shockwave line mining
+  # =========================================
+  sonic:
+    display: "Sonic"
+    description: "Send a shockwave in your facing direction"
+    rarity: RARE
+    maxLevel: 75
+    upgrade:
+      cost:
+        base: 1200
+        perLevel: 180
+    trigger: BLOCK_BREAK
+    cooldownMs: 1500
+    chance:
+      base: 0.04
+      perLevel: 0.003
+      cap: 0.30
+    params:
+      range: 5
+      width: 1
+      maxBlocks: 15
+
+  # =========================================
+  # FLAME - Auto-smelting
+  # =========================================
+  flame:
+    display: "Flame"
+    description: "Auto-smelt ores into ingots"
+    rarity: UNCOMMON
+    maxLevel: 100
+    upgrade:
+      cost:
+        base: 400
+        perLevel: 60
+    trigger: BLOCK_BREAK
+    cooldownMs: 0
+    chance:
+      base: 0.15
+      perLevel: 0.008
+      cap: 1.0
+    params:
+      chance: 1.0
+      smeltWhitelist: []
+
+  # =========================================
+  # SLIME - Extra slime drops
+  # =========================================
+  slime:
+    display: "Slime"
+    description: "Chance to find slime items while mining"
+    rarity: COMMON
+    maxLevel: 100
+    upgrade:
+      cost:
+        base: 150
+        perLevel: 25
+    trigger: BLOCK_BREAK
+    cooldownMs: 0
+    chance:
+      base: 0.05
+      perLevel: 0.004
+      cap: 0.45
+    params:
+      extraDropItem: "SLIME_BALL"
+      extraDropChance: 0.5
+
+  # =========================================
+  # QUICKSAND - Pull in loose blocks
+  # =========================================
+  quicksand:
+    display: "Quicksand"
+    description: "Automatically mine nearby sand and gravel"
+    rarity: UNCOMMON
+    maxLevel: 50
+    upgrade:
+      cost:
+        base: 350
+        perLevel: 50
+    trigger: BLOCK_BREAK
+    cooldownMs: 1000
+    chance:
+      base: 0.06
+      perLevel: 0.003
+      cap: 0.25
+    params:
+      radius: 3
+      maxBlocks: 10
+      blockWhitelist: []
+
+  # =========================================
+  # LASER - Toggle beam mining
+  # =========================================
+  laser:
+    display: "Laser"
+    description: "Toggle a mining beam that cuts through blocks"
+    rarity: LEGENDARY
+    maxLevel: 50
+    upgrade:
+      cost:
+        base: 8000
+        perLevel: 800
+    trigger:
+      - BLOCK_BREAK
+      - INTERACT
+    cooldownMs: 500
+    chance:
+      base: 1.0
+      perLevel: 0
+      cap: 1.0
+    params:
+      range: 10
+      maxBlocks: 20
+      toggleMode: true
+
+  # =========================================
+  # DEMON - High risk high reward
+  # =========================================
+  demon:
+    display: "Demon"
+    description: "Chance for massive drops, but may damage pickaxe"
+    rarity: LEGENDARY
+    maxLevel: 50
+    upgrade:
+      cost:
+        base: 6000
+        perLevel: 600
+    trigger: BLOCK_BREAK
+    cooldownMs: 2000
+    chance:
+      base: 0.02
+      perLevel: 0.002
+      cap: 0.12
+    params:
+      dropMultiplier: 3.0
+      durabilityDamageOnBackfire: 50
+      backfireChance: 0.1
+
+  # =========================================
+  # ANGEL - Protection and luck
+  # =========================================
+  angel:
+    display: "Angel"
+    description: "Reduce durability loss and gain bonus tokens"
+    rarity: EPIC
+    maxLevel: 100
+    upgrade:
+      cost:
+        base: 1500
+        perLevel: 200
+    trigger: BLOCK_BREAK
+    cooldownMs: 0
+    chance:
+      base: 0.08
+      perLevel: 0.005
+      cap: 0.60
+    params:
+      durabilitySaveChance: 0.3
+      tokenBonusPercent: 0.1
+
+  # =========================================
+  # GOLDEN - Convert drops to gold value
+  # =========================================
+  golden:
+    display: "Golden"
+    description: "Convert drops into bonus tokens"
+    rarity: RARE
+    maxLevel: 75
+    upgrade:
+      cost:
+        base: 1000
+        perLevel: 150
+    trigger: BLOCK_BREAK
+    cooldownMs: 500
+    chance:
+      base: 0.04
+      perLevel: 0.003
+      cap: 0.30
+    params:
+      convertChance: 0.2
+      bonusValue: 500
+
+  # =========================================
+  # PAUSE - Reduce cooldowns
+  # =========================================
+  pause:
+    display: "Pause"
+    description: "Reduce cooldowns of other enchants"
+    rarity: EPIC
+    maxLevel: 50
+    upgrade:
+      cost:
+        base: 2500
+        perLevel: 350
+    trigger: BLOCK_BREAK
+    cooldownMs: 5000
+    chance:
+      base: 0.03
+      perLevel: 0.002
+      cap: 0.15
+    params:
+      cooldownReductionMs: 500
+      affectedEnchantIds: []
+
+  # =========================================
+  # REWIND - Durability refund
+  # =========================================
+  rewind:
+    display: "Rewind"
+    description: "Refund durability after mining blocks"
+    rarity: RARE
+    maxLevel: 100
+    upgrade:
+      cost:
+        base: 800
+        perLevel: 120
+    trigger: BLOCK_BREAK
+    cooldownMs: 0
+    chance:
+      base: 1.0
+      perLevel: 0
+      cap: 1.0
+    params:
+      blocksPerCharge: 50
+      durabilityRefund: 10
+
+  # =========================================
+  # RAINBOW - Random bonus type
+  # =========================================
+  rainbow:
+    display: "Rainbow"
+    description: "Receive a random bonus each proc"
+    rarity: EPIC
+    maxLevel: 75
+    upgrade:
+      cost:
+        base: 1800
+        perLevel: 280
+    trigger: BLOCK_BREAK
+    cooldownMs: 1000
+    chance:
+      base: 0.05
+      perLevel: 0.004
+      cap: 0.35
+    params:
+      tokenWeight: 1.0
+      keyWeight: 1.0
+      dropWeight: 1.0
+      hasteWeight: 1.0
+      tokenBonus: 200
+      keyBonus: 1
+      hasteDuration: 100
+
+  # =========================================
+  # OVERCLOCK - Stacking speed buff
+  # =========================================
+  overclock:
+    display: "Overclock"
+    description: "Mining speed increases while continuously mining"
+    rarity: RARE
+    maxLevel: 100
+    upgrade:
+      cost:
+        base: 600
+        perLevel: 90
+    trigger: BLOCK_BREAK
+    cooldownMs: 0
+    chance:
+      base: 0.20
+      perLevel: 0.008
+      cap: 1.0
+    params:
+      maxStacks: 10
+      stackGainPerBreak: 1
+      decayDelayTicks: 40
+      hasteAmplifierBase: 0
+
+  # =========================================
+  # STORM CLOUD - Medium AOE
+  # =========================================
+  storm_cloud:
+    display: "Storm Cloud"
+    description: "Rain destroys nearby blocks"
+    rarity: UNCOMMON
+    maxLevel: 75
+    upgrade:
+      cost:
+        base: 500
+        perLevel: 75
+    trigger: BLOCK_BREAK
+    cooldownMs: 800
+    chance:
+      base: 0.06
+      perLevel: 0.004
+      cap: 0.40
+    params:
+      radius: 1
+      maxBlocks: 27
+
+  # =========================================
+  # BLACKHOLE - Auto pickup drops
+  # =========================================
+  blackhole:
+    display: "Blackhole"
+    description: "Automatically collect nearby drops"
+    rarity: RARE
+    maxLevel: 50
+    upgrade:
+      cost:
+        base: 1200
+        perLevel: 200
+    trigger: BLOCK_BREAK
+    cooldownMs: 500
+    chance:
+      base: 0.08
+      perLevel: 0.004
+      cap: 0.35
+    params:
+      pickupRadius: 5
+      overflowMode: "DROP"
+
+  # =========================================
+  # GHOSTRIDER - Phase through blocks
+  # =========================================
+  ghostrider:
+    display: "Ghostrider"
+    description: "Mine through protected filler blocks"
+    rarity: LEGENDARY
+    maxLevel: 50
+    upgrade:
+      cost:
+        base: 4000
+        perLevel: 450
+    trigger: BLOCK_BREAK
+    cooldownMs: 1000
+    chance:
+      base: 0.03
+      perLevel: 0.002
+      cap: 0.15
+    params:
+      skipMaterials: []
+      extraRange: 3
+
+  # =========================================
+  # MIRROR - Duplicate drops
+  # =========================================
+  mirror:
+    display: "Mirror"
+    description: "Chance to duplicate block drops"
+    rarity: EPIC
+    maxLevel: 75
+    upgrade:
+      cost:
+        base: 2200
+        perLevel: 320
+    trigger: BLOCK_BREAK
+    cooldownMs: 2000
+    chance:
+      base: 0.04
+      perLevel: 0.003
+      cap: 0.25
+    params:
+      duplicateChance: 0.3
+      cooldownMs: 1000
+
+  # =========================================
+  # FLASH - Quick small burst
+  # =========================================
+  flash:
+    display: "Flash"
+    description: "Quick burst that breaks a small cluster"
+    rarity: COMMON
+    maxLevel: 100
+    upgrade:
+      cost:
+        base: 250
+        perLevel: 35
+    trigger: BLOCK_BREAK
+    cooldownMs: 200
+    chance:
+      base: 0.10
+      perLevel: 0.006
+      cap: 0.70
+    params:
+      radius: 1
+      maxBlocks: 8
+
+  # =========================================
+  # OVERLOAD - Charge and burst
+  # =========================================
+  overload:
+    display: "Overload"
+    description: "Build charge then release a massive burst"
+    rarity: LEGENDARY
+    maxLevel: 50
+    upgrade:
+      cost:
+        base: 7000
+        perLevel: 700
+    trigger: BLOCK_BREAK
+    cooldownMs: 0
+    chance:
+      base: 1.0
+      perLevel: 0
+      cap: 1.0
+    params:
+      chargePerBlock: 1
+      chargeMax: 100
+      burstRadius: 3
+      maxBlocks: 64
+      bonusTokens: 1000
+
+  # =========================================
+  # METEOR SHOWER - Multiple delayed bursts
+  # =========================================
+  meteor_shower:
+    display: "Meteor Shower"
+    description: "Call down multiple meteor strikes"
+    rarity: LEGENDARY
+    maxLevel: 50
+    upgrade:
+      cost:
+        base: 10000
+        perLevel: 1000
+    trigger: BLOCK_BREAK
+    cooldownMs: 10000
+    chance:
+      base: 0.01
+      perLevel: 0.001
+      cap: 0.06
+    params:
+      meteors: 5
+      radius: 3
+      maxBlocksPerMeteor: 10
+      durationTicks: 40

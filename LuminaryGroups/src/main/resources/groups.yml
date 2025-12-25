@@ -1,0 +1,124 @@
+# LuminaryGroups - Group Definitions
+#
+# Group options:
+#   display-name: The display name of the group
+#   prefix: The prefix shown before player names (supports color codes)
+#   suffix: The suffix shown after player names (supports color codes)
+#   name-color: The color of the player's name (e.g., &a, &b, &#FF5500)
+#   chat-color: The color of the player's chat message
+#   weight: Higher weight = higher priority (for determining primary group)
+#   default: true/false - Set as the default group for new players
+#   permissions: List of permissions granted to this group
+#   inherit: List of groups to inherit permissions from
+
+groups:
+  # Default group for all players
+  default:
+    display-name: "Member"
+    prefix: "&7[Member]"
+    suffix: ""
+    name-color: "&7"
+    chat-color: "&f"
+    weight: 0
+    default: true
+    permissions:
+      - luminary.basic
+    inherit: []
+
+  # VIP group
+  vip:
+    display-name: "VIP"
+    prefix: "&a[VIP]"
+    suffix: ""
+    name-color: "&a"
+    chat-color: "&f"
+    weight: 10
+    default: false
+    permissions:
+      - luminary.vip
+    inherit:
+      - default
+
+  # MVP group
+  mvp:
+    display-name: "MVP"
+    prefix: "&b[MVP]"
+    suffix: ""
+    name-color: "&b"
+    chat-color: "&f"
+    weight: 20
+    default: false
+    permissions:
+      - luminary.mvp
+    inherit:
+      - vip
+
+  # MVP+ group
+  mvpplus:
+    display-name: "MVP+"
+    prefix: "&b[MVP&c+&b]"
+    suffix: ""
+    name-color: "&b"
+    chat-color: "&f"
+    weight: 30
+    default: false
+    permissions:
+      - luminary.mvpplus
+    inherit:
+      - mvp
+
+  # Helper group
+  helper:
+    display-name: "Helper"
+    prefix: "&e[Helper]"
+    suffix: ""
+    name-color: "&e"
+    chat-color: "&f"
+    weight: 50
+    default: false
+    permissions:
+      - luminary.staff.helper
+    inherit:
+      - mvpplus
+
+  # Moderator group
+  mod:
+    display-name: "Mod"
+    prefix: "&2[Mod]"
+    suffix: ""
+    name-color: "&2"
+    chat-color: "&f"
+    weight: 60
+    default: false
+    permissions:
+      - luminary.staff.mod
+    inherit:
+      - helper
+
+  # Admin group
+  admin:
+    display-name: "Admin"
+    prefix: "&c[Admin]"
+    suffix: ""
+    name-color: "&c"
+    chat-color: "&f"
+    weight: 80
+    default: false
+    permissions:
+      - luminary.staff.admin
+      - luminarygroups.admin
+    inherit:
+      - mod
+
+  # Owner group
+  owner:
+    display-name: "Owner"
+    prefix: "&4[Owner]"
+    suffix: ""
+    name-color: "&4"
+    chat-color: "&f"
+    weight: 100
+    default: false
+    permissions:
+      - "*"
+    inherit: []

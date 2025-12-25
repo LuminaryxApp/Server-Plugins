@@ -1,0 +1,36 @@
+# LuminaryGroups Configuration
+
+# Default group for new players
+default-group: default
+
+# Chat formatting settings
+chat:
+  # Enable custom chat formatting
+  enabled: true
+  # Chat format placeholders:
+  # {rank} - Rank prefix from LuminaryRanks (if installed)
+  # {prefix} - Group prefix
+  # {suffix} - Group suffix
+  # {name_color} - Name color code
+  # {chat_color} - Chat message color code
+  # {name} - Player name
+  # {displayname} - Player display name
+  # {message} - The chat message
+  format: "{prefix} {rank}{name_color}{name}{suffix}&7: {chat_color}{message}"
+
+# Tab list settings
+tablist:
+  # Enable custom tab list names
+  enabled: true
+  # Tab list format (same placeholders as chat)
+  format: "{prefix} {rank}{name_color}{name}"
+
+# Integrate with LuminaryRanks for combined display
+ranks-integration:
+  enabled: true
+  # Show rank prefix after group prefix
+  show-rank-prefix: true
+  # Show prestige prefix
+  show-prestige: true
+  # Show rebirth prefix
+  show-rebirth: true

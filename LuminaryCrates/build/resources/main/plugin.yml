@@ -1,0 +1,25 @@
+name: LuminaryCrates
+version: 1.0.0
+main: com.luminary.crates.LuminaryCrates
+api-version: '1.20'
+authors: [Luminary]
+description: Virtual crate system with spinning animations for prison servers
+depend: [LuminaryCore]
+softdepend: [Vault, LuminaryEnchants]
+
+commands:
+  crates:
+    description: Main crates command
+    usage: /<command> [subcommand]
+    aliases: [crate, lumcrates]
+
+permissions:
+  luminarycrates.use:
+    description: Allows opening crates
+    default: true
+  luminarycrates.admin:
+    description: Allows admin commands
+    default: op
+  luminarycrates.give:
+    description: Allows giving keys to players
+    default: op

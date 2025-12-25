@@ -1,0 +1,76 @@
+# LuminaryEconomy - Currency Definitions
+# Define all your server currencies here
+
+currencies:
+  # Tokens - Primary currency earned from mining
+  tokens:
+    display-name: "Tokens"
+    symbol: ""
+    color: "&e"
+    icon: GOLD_INGOT
+
+    # Starting balance for new players
+    starting-balance: 0
+
+    # Maximum balance a player can have (use -1 for unlimited)
+    max-balance: 999999999999
+
+    # Minimum balance (usually 0, set negative if debt is allowed)
+    min-balance: 0
+
+    # Allow negative balance?
+    allow-negative: false
+
+    # Can players pay each other with this currency?
+    payable: true
+
+    # Number of decimal places (0 = whole numbers only)
+    decimal-places: 0
+
+    # Format string for displaying amounts
+    # Available: {symbol}, {amount}, {name}, {color}
+    format: "{amount}"
+
+  # Beacons - Premium/rare currency
+  beacons:
+    display-name: "Beacons"
+    symbol: ""
+    color: "&b"
+    icon: BEACON
+
+    starting-balance: 0
+    max-balance: 999999999
+    min-balance: 0
+    allow-negative: false
+    payable: true
+    decimal-places: 0
+    format: "{amount}"
+
+  # Gems - Special currency for prestige/upgrades
+  gems:
+    display-name: "Gems"
+    symbol: ""
+    color: "&d"
+    icon: DIAMOND
+
+    starting-balance: 0
+    max-balance: 999999999
+    min-balance: 0
+    allow-negative: false
+    payable: true
+    decimal-places: 0
+    format: "{amount}"
+
+# Example of adding a custom currency:
+#  custom_currency:
+#    display-name: "Custom Currency"
+#    symbol: "$"
+#    color: "&a"
+#    icon: EMERALD
+#    starting-balance: 100
+#    max-balance: 1000000
+#    min-balance: 0
+#    allow-negative: false
+#    payable: true
+#    decimal-places: 2
+#    format: "{symbol}{amount}"

@@ -1,0 +1,38 @@
+name: LuminaryShop
+version: '1.0.0'
+main: com.luminary.shop.LuminaryShop
+api-version: '1.20'
+author: Luminary
+description: GUI shop system with sell wands and auto-sell for prison servers
+depend: [LuminaryCore]
+softdepend:
+  - LuminaryEconomy
+  - LuminaryBackpacks
+  - PlaceholderAPI
+
+commands:
+  shop:
+    description: Open the shop menu
+    usage: /<command> [category]
+    aliases: [store, sell]
+  sellwand:
+    description: Sell wand commands
+    usage: /<command> [give|info]
+    aliases: [sw]
+  shopadmin:
+    description: Admin shop commands
+    usage: /<command> <subcommand>
+
+permissions:
+  luminaryshop.use:
+    description: Use the shop
+    default: true
+  luminaryshop.sell:
+    description: Sell items
+    default: true
+  luminaryshop.sellwand:
+    description: Use sell wands
+    default: true
+  luminaryshop.admin:
+    description: Admin commands
+    default: op

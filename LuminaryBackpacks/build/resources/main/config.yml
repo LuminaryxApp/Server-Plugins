@@ -1,0 +1,96 @@
+# LuminaryBackpacks Configuration
+
+# Default backpack tier for new players
+default-tier: 1
+
+# Auto-pickup settings
+auto-pickup:
+  enabled: true
+  # Only pickup blocks that can be sold
+  sellable-only: false
+
+# Auto-sell settings
+auto-sell:
+  enabled: true
+  # Interval in ticks (20 = 1 second)
+  interval: 100
+  # Sound when auto-selling
+  sound: ENTITY_EXPERIENCE_ORB_PICKUP
+
+# Backpack tiers
+tiers:
+  1:
+    name: "Starter Backpack"
+    size: 9  # 1 row
+    color: "&7"
+    upgrade-cost: 5000
+    permission: ""
+  2:
+    name: "Basic Backpack"
+    size: 18  # 2 rows
+    color: "&a"
+    upgrade-cost: 15000
+    permission: ""
+  3:
+    name: "Advanced Backpack"
+    size: 27  # 3 rows
+    color: "&b"
+    upgrade-cost: 50000
+    permission: ""
+  4:
+    name: "Elite Backpack"
+    size: 36  # 4 rows
+    color: "&d"
+    upgrade-cost: 150000
+    permission: ""
+  5:
+    name: "Legendary Backpack"
+    size: 45  # 5 rows
+    color: "&6"
+    upgrade-cost: 500000
+    permission: ""
+  6:
+    name: "Mythic Backpack"
+    size: 54  # 6 rows (max)
+    color: "&c"
+    upgrade-cost: 0  # Max tier
+    permission: ""
+
+# Sell prices for items (uses LuminaryShop if available)
+sell-prices:
+  COBBLESTONE: 1
+  STONE: 2
+  COAL: 5
+  COAL_ORE: 8
+  IRON_INGOT: 15
+  IRON_ORE: 10
+  RAW_IRON: 10
+  GOLD_INGOT: 50
+  GOLD_ORE: 35
+  RAW_GOLD: 35
+  DIAMOND: 200
+  DIAMOND_ORE: 150
+  EMERALD: 300
+  EMERALD_ORE: 250
+  LAPIS_LAZULI: 10
+  LAPIS_ORE: 25
+  REDSTONE: 5
+  REDSTONE_ORE: 15
+  COPPER_INGOT: 8
+  COPPER_ORE: 5
+  RAW_COPPER: 5
+  NETHERITE_SCRAP: 1000
+  ANCIENT_DEBRIS: 800
+  QUARTZ: 8
+  NETHER_QUARTZ_ORE: 12
+  OBSIDIAN: 25
+  DEEPSLATE: 3
+  COBBLED_DEEPSLATE: 2
+  DEEPSLATE_COAL_ORE: 12
+  DEEPSLATE_IRON_ORE: 15
+  DEEPSLATE_GOLD_ORE: 45
+  DEEPSLATE_DIAMOND_ORE: 200
+  DEEPSLATE_EMERALD_ORE: 300
+  DEEPSLATE_LAPIS_ORE: 35
+  DEEPSLATE_REDSTONE_ORE: 20
+  DEEPSLATE_COPPER_ORE: 8

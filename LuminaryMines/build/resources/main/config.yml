@@ -1,0 +1,138 @@
+# ================================
+#    LuminaryMines Configuration
+# ================================
+
+# Mine world settings
+world:
+  # The world where all private mines are created
+  name: "mines"
+  # Whether to create the world automatically if it doesn't exist
+  auto-create: true
+  # World type for auto-created world (NORMAL, FLAT, VOID)
+  type: "VOID"
+
+# Mine placement settings
+placement:
+  # Starting X coordinate for mine grid
+  start-x: 0
+  # Starting Z coordinate for mine grid
+  start-z: 0
+  # Space between mines (should be larger than your biggest schematic)
+  spacing: 200
+  # Y level to place mines at
+  y-level: 64
+  # Maximum number of mines per row before starting a new row
+  mines-per-row: 50
+
+# Mine reset settings
+reset:
+  # Default auto-reset interval in seconds (5 minutes)
+  default-interval: 300
+  # Minimum reset interval players can set (in seconds)
+  min-interval: 60
+  # Maximum reset interval players can set (in seconds)
+  max-interval: 3600
+  # Reset mine when this percentage is mined (0.0 to disable)
+  auto-reset-threshold: 95.0
+  # Delay between processing mines during reset check (ticks)
+  reset-check-interval: 20
+
+# Default block composition for new mines (must add up to 100)
+# Format: MATERIAL_NAME: percentage
+default-blocks:
+  STONE: 50
+  COBBLESTONE: 25
+  COAL_ORE: 15
+  IRON_ORE: 8
+  GOLD_ORE: 2
+
+# Tier upgrades - better blocks at higher tiers
+# Each tier inherits previous tier blocks unless overridden
+tiers:
+  1:
+    name: "Stone"
+    blocks:
+      STONE: 50
+      COBBLESTONE: 25
+      COAL_ORE: 15
+      IRON_ORE: 8
+      GOLD_ORE: 2
+  2:
+    name: "Iron"
+    blocks:
+      STONE: 40
+      COBBLESTONE: 20
+      COAL_ORE: 15
+      IRON_ORE: 15
+      GOLD_ORE: 7
+      LAPIS_ORE: 3
+  3:
+    name: "Gold"
+    blocks:
+      STONE: 35
+      COBBLESTONE: 15
+      COAL_ORE: 12
+      IRON_ORE: 15
+      GOLD_ORE: 12
+      LAPIS_ORE: 5
+      REDSTONE_ORE: 4
+      DIAMOND_ORE: 2
+  4:
+    name: "Diamond"
+    blocks:
+      STONE: 30
+      COAL_ORE: 10
+      IRON_ORE: 15
+      GOLD_ORE: 15
+      LAPIS_ORE: 8
+      REDSTONE_ORE: 8
+      DIAMOND_ORE: 8
+      EMERALD_ORE: 6
+  5:
+    name: "Emerald"
+    blocks:
+      STONE: 20
+      IRON_ORE: 12
+      GOLD_ORE: 15
+      LAPIS_ORE: 10
+      REDSTONE_ORE: 10
+      DIAMOND_ORE: 15
+      EMERALD_ORE: 12
+      ANCIENT_DEBRIS: 6
+
+# Whitelist settings
+whitelist:
+  # Maximum players a user can add to their whitelist
+  max-size: 10
+  # Permission-based whitelist sizes (luminarymines.whitelist.<tier>)
+  # Players with higher permission get larger whitelist
+  permission-sizes:
+    vip: 15
+    mvp: 20
+    elite: 30
+    admin: 100
+
+# Schematic settings
+schematics:
+  # Folder inside plugins/LuminaryMines/ to look for schematics
+  folder: "schematics"
+  # Default schematic to use when creating a mine
+  default: "default"
+  # Whether players can choose their schematic on creation
+  allow-choice: true
+
+# Protection settings
+protection:
+  # Prevent non-whitelisted players from entering mines
+  restrict-entry: true
+  # Prevent block placing in mine area
+  prevent-building: true
+  # Allow players to break blocks outside the mine region
+  allow-exterior-breaking: false
+
+# Data storage
+storage:
+  # How often to auto-save mine data (in seconds)
+  auto-save-interval: 300
+  # Folder for mine data files
+  data-folder: "data"

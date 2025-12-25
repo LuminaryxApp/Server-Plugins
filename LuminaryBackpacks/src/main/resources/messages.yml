@@ -1,0 +1,28 @@
+# LuminaryBackpacks Messages
+prefix: "&6&lBackpack &8» &7"
+
+backpack-opened: "&aOpened your backpack!"
+backpack-full: "&cYour backpack is full!"
+backpack-empty: "&cYour backpack is empty!"
+
+auto-pickup-enabled: "&aAuto-pickup enabled!"
+auto-pickup-disabled: "&cAuto-pickup disabled."
+auto-sell-enabled: "&aAuto-sell enabled!"
+auto-sell-disabled: "&cAuto-sell disabled."
+
+sold-items: "&aSold items for &e{amount} &atokens!"
+nothing-to-sell: "&cNo sellable items in your backpack."
+
+upgrade-success: "&aUpgraded to &e{tier}&a!"
+upgrade-max: "&cYou already have the maximum backpack tier!"
+upgrade-no-money: "&cYou need &e{cost} &ctokens to upgrade!"
+
+tier-given: "&aGave &e{tier} &abackpack tier to &e{player}&a!"
+tier-set: "&aYour backpack tier was set to &e{tier}&a!"
+tier-reset: "&aReset &e{player}&a's backpack!"
+
+no-permission: "&cYou don't have permission to do that!"
+player-not-found: "&cPlayer not found!"
+invalid-tier: "&cInvalid tier! Use 1-6."
+
+admin-reload: "&aConfiguration reloaded!"

@@ -1,0 +1,332 @@
+# LuminaryCrates - Crate Definitions
+# Define all your crates and their rewards here
+
+crates:
+  # Common Crate - Basic rewards
+  common:
+    display-name: "Common Crate"
+    tier: COMMON
+    key-material: TRIPWIRE_HOOK
+    key-name: "&f&lCommon Key"
+
+    rewards:
+      iron_ingots:
+        display: "Iron Ingots"
+        type: ITEM
+        material: IRON_INGOT
+        amount: 16
+        weight: 30
+        rarity: COMMON
+
+      gold_ingots:
+        display: "Gold Ingots"
+        type: ITEM
+        material: GOLD_INGOT
+        amount: 8
+        weight: 25
+        rarity: COMMON
+
+      diamonds_small:
+        display: "Diamonds"
+        type: ITEM
+        material: DIAMOND
+        amount: 3
+        weight: 15
+        rarity: UNCOMMON
+
+      emeralds:
+        display: "Emeralds"
+        type: ITEM
+        material: EMERALD
+        amount: 5
+        weight: 20
+        rarity: COMMON
+
+      tokens_small:
+        display: "500 Tokens"
+        type: TOKENS
+        material: GOLD_NUGGET
+        tokens: 500
+        weight: 10
+        rarity: UNCOMMON
+
+  # Rare Crate - Better rewards
+  rare:
+    display-name: "Rare Crate"
+    tier: RARE
+    key-material: TRIPWIRE_HOOK
+    key-name: "&b&lRare Key"
+
+    rewards:
+      diamonds:
+        display: "Diamond Stack"
+        type: ITEM
+        material: DIAMOND
+        amount: 16
+        weight: 25
+        rarity: RARE
+
+      diamond_pickaxe:
+        display: "Diamond Pickaxe"
+        type: ITEM
+        material: DIAMOND_PICKAXE
+        amount: 1
+        weight: 15
+        rarity: RARE
+        enchant-glow: true
+        lore:
+          - "&7A shiny new pickaxe!"
+          - "&7Perfect for mining."
+
+      netherite_ingot:
+        display: "Netherite Ingot"
+        type: ITEM
+        material: NETHERITE_INGOT
+        amount: 1
+        weight: 10
+        rarity: EPIC
+
+      tokens_medium:
+        display: "2,500 Tokens"
+        type: TOKENS
+        material: GOLD_INGOT
+        tokens: 2500
+        weight: 20
+        rarity: RARE
+
+      common_key:
+        display: "3x Common Keys"
+        type: KEY
+        material: TRIPWIRE_HOOK
+        key-crate: common
+        key-amount: 3
+        weight: 20
+        rarity: UNCOMMON
+
+      experience:
+        display: "30 Levels of XP"
+        type: COMMAND
+        material: EXPERIENCE_BOTTLE
+        commands:
+          - "xp give {player} 30 levels"
+        weight: 10
+        rarity: RARE
+
+  # Epic Crate - Great rewards
+  epic:
+    display-name: "Epic Crate"
+    tier: EPIC
+    key-material: TRIPWIRE_HOOK
+    key-name: "&5&lEpic Key"
+
+    rewards:
+      netherite_block:
+        display: "Netherite Block"
+        type: ITEM
+        material: NETHERITE_BLOCK
+        amount: 1
+        weight: 10
+        rarity: EPIC
+        enchant-glow: true
+
+      diamond_blocks:
+        display: "Diamond Blocks"
+        type: ITEM
+        material: DIAMOND_BLOCK
+        amount: 8
+        weight: 20
+        rarity: EPIC
+
+      tokens_large:
+        display: "10,000 Tokens"
+        type: TOKENS
+        material: GOLD_BLOCK
+        tokens: 10000
+        weight: 25
+        rarity: EPIC
+
+      rare_keys:
+        display: "3x Rare Keys"
+        type: KEY
+        material: TRIPWIRE_HOOK
+        key-crate: rare
+        key-amount: 3
+        weight: 20
+        rarity: RARE
+
+      fly_time:
+        display: "1 Hour Fly"
+        type: COMMAND
+        material: ELYTRA
+        commands:
+          - "tempfly give {player} 1h"
+        weight: 15
+        rarity: EPIC
+        lore:
+          - "&7Grants 1 hour of flight time!"
+
+      beacon:
+        display: "Beacon"
+        type: ITEM
+        material: BEACON
+        amount: 1
+        weight: 10
+        rarity: LEGENDARY
+        enchant-glow: true
+
+  # Legendary Crate - Premium rewards
+  legendary:
+    display-name: "Legendary Crate"
+    tier: LEGENDARY
+    key-material: TRIPWIRE_HOOK
+    key-name: "&6&lLegendary Key"
+
+    rewards:
+      netherite_blocks:
+        display: "Netherite Blocks"
+        type: ITEM
+        material: NETHERITE_BLOCK
+        amount: 4
+        weight: 15
+        rarity: LEGENDARY
+        enchant-glow: true
+
+      tokens_huge:
+        display: "50,000 Tokens"
+        type: TOKENS
+        material: GOLD_BLOCK
+        tokens: 50000
+        weight: 20
+        rarity: LEGENDARY
+
+      epic_keys:
+        display: "5x Epic Keys"
+        type: KEY
+        material: TRIPWIRE_HOOK
+        key-crate: epic
+        key-amount: 5
+        weight: 25
+        rarity: EPIC
+
+      rank_upgrade:
+        display: "Rank Upgrade Voucher"
+        type: COMMAND
+        material: NETHER_STAR
+        commands:
+          - "rankup give {player}"
+        weight: 10
+        rarity: LEGENDARY
+        enchant-glow: true
+        lore:
+          - "&6&lRANK UPGRADE!"
+          - "&7Upgrades you to the next rank!"
+
+      totem:
+        display: "Totem of Undying"
+        type: ITEM
+        material: TOTEM_OF_UNDYING
+        amount: 1
+        weight: 15
+        rarity: EPIC
+
+      god_apple:
+        display: "Enchanted Golden Apple"
+        type: ITEM
+        material: ENCHANTED_GOLDEN_APPLE
+        amount: 3
+        weight: 15
+        rarity: LEGENDARY
+
+  # Mythic Crate - The rarest rewards
+  mythic:
+    display-name: "Mythic Crate"
+    tier: MYTHIC
+    key-material: TRIPWIRE_HOOK
+    key-name: "&d&lMythic Key"
+
+    rewards:
+      tokens_massive:
+        display: "250,000 Tokens"
+        type: TOKENS
+        material: GOLD_BLOCK
+        tokens: 250000
+        weight: 15
+        rarity: MYTHIC
+
+      legendary_keys:
+        display: "5x Legendary Keys"
+        type: KEY
+        material: TRIPWIRE_HOOK
+        key-crate: legendary
+        key-amount: 5
+        weight: 20
+        rarity: LEGENDARY
+
+      special_pickaxe:
+        display: "Mythic Mining Pickaxe"
+        type: COMMAND
+        material: NETHERITE_PICKAXE
+        commands:
+          - "give {player} netherite_pickaxe{Enchantments:[{id:efficiency,lvl:10},{id:fortune,lvl:5},{id:unbreaking,lvl:5}],display:{Name:'\"&d&lMythic Pickaxe\"'}}"
+        weight: 10
+        rarity: MYTHIC
+        enchant-glow: true
+        lore:
+          - "&d&lMYTHIC ITEM!"
+          - "&7The ultimate mining tool."
+          - "&7Efficiency X, Fortune V, Unbreaking V"
+
+      vip_upgrade:
+        display: "VIP Rank"
+        type: COMMAND
+        material: DIAMOND
+        commands:
+          - "lp user {player} parent add vip"
+        weight: 5
+        rarity: MYTHIC
+        enchant-glow: true
+        lore:
+          - "&d&lMYTHIC REWARD!"
+          - "&7Grants permanent VIP rank!"
+
+      full_netherite_set:
+        display: "Full Netherite Set"
+        type: COMMAND
+        material: NETHERITE_CHESTPLATE
+        commands:
+          - "give {player} netherite_helmet{Enchantments:[{id:protection,lvl:4},{id:unbreaking,lvl:3}]} 1"
+          - "give {player} netherite_chestplate{Enchantments:[{id:protection,lvl:4},{id:unbreaking,lvl:3}]} 1"
+          - "give {player} netherite_leggings{Enchantments:[{id:protection,lvl:4},{id:unbreaking,lvl:3}]} 1"
+          - "give {player} netherite_boots{Enchantments:[{id:protection,lvl:4},{id:unbreaking,lvl:3}]} 1"
+        weight: 15
+        rarity: MYTHIC
+        enchant-glow: true
+        lore:
+          - "&d&lMYTHIC ARMOR SET!"
+          - "&7Full Protection IV Netherite!"
+
+      money_jackpot:
+        display: "$1,000,000 Jackpot"
+        type: COMMAND
+        material: SUNFLOWER
+        commands:
+          - "eco give {player} 1000000"
+        weight: 5
+        rarity: MYTHIC
+        enchant-glow: true
+        lore:
+          - "&d&lJACKPOT!"
+          - "&7One million dollars!"
+
+      store_credit:
+        display: "$25 Store Credit"
+        type: COMMAND
+        material: EMERALD_BLOCK
+        commands:
+          - "credits add {player} 25"
+        weight: 10
+        rarity: MYTHIC
+        enchant-glow: true
+        lore:
+          - "&d&lSTORE CREDIT!"
+          - "&7$25 to spend on the store!"

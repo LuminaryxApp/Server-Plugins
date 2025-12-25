@@ -1,0 +1,43 @@
+name: LuminaryRanks
+version: '1.0.0'
+main: com.luminary.ranks.LuminaryRanks
+api-version: '1.20'
+author: Luminary
+description: Prison rank progression with A-Z ranks, prestiges, and rebirths
+depend: [LuminaryCore]
+softdepend:
+  - LuminaryEconomy
+  - LuminaryCrates
+  - PlaceholderAPI
+
+commands:
+  rankup:
+    description: Rank up to the next rank
+    usage: /<command>
+    aliases: [ru]
+  prestige:
+    description: Prestige to reset ranks and gain bonuses
+    usage: /<command>
+    aliases: [pres]
+  rebirth:
+    description: Rebirth to reset everything for permanent bonuses
+    usage: /<command>
+    aliases: [rb]
+  ranks:
+    description: View ranks or admin commands
+    usage: /<command> [admin]
+    aliases: [rank]
+
+permissions:
+  luminaryranks.rankup:
+    description: Allows ranking up
+    default: true
+  luminaryranks.prestige:
+    description: Allows prestiging
+    default: true
+  luminaryranks.rebirth:
+    description: Allows rebirthing
+    default: true
+  luminaryranks.admin:
+    description: Admin commands
+    default: op

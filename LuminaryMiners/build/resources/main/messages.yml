@@ -1,0 +1,16 @@
+# LuminaryMiners Messages
+
+messages:
+  prefix: "&6[Miners] &7"
+
+  no-permission: "&cYou don't have permission to do that!"
+
+  offline-production: "&aWelcome back! Your miners produced resources while you were away ({time})."
+
+  miner-purchased: "&aYou purchased a {miner}!"
+  miner-upgraded: "&aUpgraded to Tier {tier}!"
+  miner-collected: "&aCollected {amount} {resource}!"
+
+  not-enough-currency: "&cYou don't have enough {currency}!"
+  max-miners-reached: "&cYou have reached the maximum number of miners!"
+  max-type-reached: "&cYou can only have {max} of this miner type!"

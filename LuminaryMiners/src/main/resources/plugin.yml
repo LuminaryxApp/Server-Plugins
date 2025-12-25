@@ -1,0 +1,24 @@
+name: LuminaryMiners
+version: '1.0.0'
+main: com.luminary.miners.LuminaryMiners
+api-version: '1.20'
+authors: [Luminary]
+description: AFK mining robots and golems that generate resources for you
+depend: [LuminaryCore]
+softdepend: [PlaceholderAPI, LuminaryEconomy]
+commands:
+  miners:
+    description: Open the miners menu
+    usage: /<command>
+    aliases: [miner, robots, golems]
+  mineradmin:
+    description: Admin commands for miners
+    usage: /<command>
+    permission: luminaryminers.admin
+permissions:
+  luminaryminers.admin:
+    description: Access to admin commands
+    default: op
+  luminaryminers.use:
+    description: Use miners
+    default: true

@@ -1,0 +1,19 @@
+# LuminaryCore Configuration
+
+# Join/Quit Messages
+join-quit:
+  custom-messages: true
+
+# Maintenance Mode
+maintenance:
+  enabled: false
+
+# Moderation Settings
+moderation:
+  # Number of warnings before auto-punishment
+  warn-threshold: 3
+  # Action to take when threshold reached: "tempban <duration>" or "ban"
+  warn-threshold-action: "tempban 1d"
+
+# Other Luminary plugins will have their configs stored in:
+# plugins/LuminaryCore/configs/<PluginName>/

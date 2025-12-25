@@ -1,0 +1,67 @@
+# LuminaryEconomy - Scoreboard Configuration
+# Customize the sidebar display
+
+scoreboard:
+  # Enable the scoreboard sidebar
+  enabled: true
+
+  # Update interval in ticks (20 ticks = 1 second)
+  # Lower = more responsive, Higher = better performance
+  update-interval: 20
+
+  # Title of the scoreboard
+  title: "&6&lLuminary Prison"
+
+  # Lines of the scoreboard (top to bottom)
+  # Available placeholders:
+  #   Player: {player}, {displayname}, {rank}, {prefix}
+  #   World: {world}
+  #   Server: {online}, {max_players}, {time}, {date}
+  #   Currencies: {tokens}, {beacons}, {gems}
+  #     - Add _raw for raw number: {tokens_raw}
+  #     - Add _formatted for compact (1.5K): {tokens_formatted}
+  #
+  # Use empty string "" or just spaces for blank lines
+  # Each line MUST be unique (add spaces to make duplicates unique)
+
+  lines:
+    - "&7&m-----------------"
+    - "&fPlayer: &a{player}"
+    - "&fRank: {rank}"
+    - ""
+    - "&6&lCurrencies"
+    - "&e Tokens: &f{tokens_formatted}"
+    - "&b Beacons: &f{beacons_formatted}"
+    - "&d Gems: &f{gems_formatted}"
+    - " "
+    - "&7Online: &f{online}&7/&f{max_players}"
+    - "&7&m-----------------"
+    - "&eLuminaryPrison.com"
+
+# Alternative compact layout:
+#  lines:
+#    - "&6&l    LUMINARY    "
+#    - ""
+#    - "&7Rank: {rank}"
+#    - ""
+#    - "&e{tokens_formatted} Tokens"
+#    - "&b{beacons_formatted} Beacons"
+#    - "&d{gems_formatted} Gems"
+#    - ""
+#    - "&7play.server.com"
+
+# Prison-style layout with more info:
+#  lines:
+#    - "&6&lLUMINARY PRISON"
+#    - "&7&m-----------------"
+#    - "&fPlayer: &e{player}"
+#    - "&fRank: {rank}"
+#    - "&fWorld: &7{world}"
+#    - "&7&m-----------------"
+#    - "&6&lBALANCES"
+#    - "&e{tokens_icon} &fTokens: &e{tokens_formatted}"
+#    - "&b{beacons_icon} &fBeacons: &b{beacons_formatted}"
+#    - "&d{gems_icon} &fGems: &d{gems_formatted}"
+#    - "&7&m-----------------"
+#    - "&a{online}&7/&a{max_players} &7Online"
+#    - "&estore.server.com"

@@ -1,0 +1,59 @@
+name: LuminaryEconomy
+version: 1.0.0
+main: com.luminary.economy.LuminaryEconomy
+api-version: '1.20'
+authors: [Luminary]
+description: Multi-currency economy system with scoreboard sidebar for prison servers
+depend: [LuminaryCore]
+softdepend: [PlaceholderAPI, LuminaryEnchants, LuminaryCrates]
+
+commands:
+  economy:
+    description: Main economy command
+    usage: /<command> [subcommand]
+    aliases: [eco, bal, balance, money]
+  tokens:
+    description: View or manage tokens
+    usage: /<command> [player]
+    aliases: [token]
+  beacons:
+    description: View or manage beacons
+    usage: /<command> [player]
+    aliases: [beacon]
+  gems:
+    description: View or manage gems
+    usage: /<command> [player]
+    aliases: [gem]
+  pay:
+    description: Pay another player
+    usage: /<command> <player> <amount> [currency]
+  scoreboard:
+    description: Toggle scoreboard visibility
+    usage: /<command>
+    aliases: [sb, sidebar]
+
+permissions:
+  luminaryeconomy.use:
+    description: Basic economy permissions
+    default: true
+  luminaryeconomy.pay:
+    description: Allow paying other players
+    default: true
+  luminaryeconomy.scoreboard:
+    description: Toggle scoreboard
+    default: true
+  luminaryeconomy.admin:
+    description: Admin economy commands
+    default: op
+  luminaryeconomy.admin.give:
+    description: Give currency to players
+    default: op
+  luminaryeconomy.admin.take:
+    description: Take currency from players
+    default: op
+  luminaryeconomy.admin.set:
+    description: Set player currency
+    default: op
+  luminaryeconomy.admin.reset:
+    description: Reset player data
+    default: op

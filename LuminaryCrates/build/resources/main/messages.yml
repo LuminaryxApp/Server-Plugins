@@ -1,0 +1,50 @@
+# LuminaryCrates Messages
+# Customize all plugin messages here
+
+messages:
+  # Prefix for all messages
+  prefix: "&6&lCrates &8>> "
+
+  # General messages
+  no-permission: "&cYou don't have permission to do that!"
+  player-only: "&cThis command can only be used by players!"
+
+  # Crate interaction messages
+  crate:
+    no-key: "&cYou need a {crate} &ckey to open this crate!"
+    wrong-key: "&cThis key doesn't work on this crate!"
+    already-opening: "&cYou're already opening a crate!"
+    won: "&aYou won: &f{reward} &afrom the {crate}&a!"
+    broadcast: "&6&l{player} &ewon &f{reward} &efrom a {crate}&e! &7({rarity}&7)"
+    cannot-break: "&cYou cannot break a crate location!"
+    no-permission: "&cYou don't have permission to open this crate!"
+
+  # Key messages
+  key:
+    received: "&aYou received &f{amount}x {crate} &akey(s)!"
+    given: "&aGave &f{amount}x {crate} &akey(s) to &f{player}&a!"
+
+  # Admin messages
+  admin:
+    crate-set: "&aSuccessfully set {crate} &acrate at this location!"
+    crate-removed: "&aRemoved crate from this location!"
+    reloaded: "&aConfiguration reloaded successfully!"
+
+  # Animation
+  animation:
+    title: "&6&l{crate}"
+    spinning: "&eRolling..."
+    winner: "&a&lWINNER!"
+
+  # Preview
+  preview:
+    title: "&6{crate} &7(Page {page}/{pages})"
+    back: "&cClose"
+    next-page: "&eNext Page"
+    prev-page: "&ePrevious Page"
+
+  # Errors
+  error:
+    crate-not-found: "&cCrate not found: {crate}"
+    player-not-found: "&cPlayer not found: {player}"
+    invalid-amount: "&cInvalid amount: {amount}"

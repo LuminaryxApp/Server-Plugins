@@ -1,0 +1,46 @@
+# ================================
+#   LuminaryRanks Messages
+# ================================
+
+prefix: "&6&lRanks &8» &7"
+no-permission: "&cYou don't have permission to do that!"
+player-only: "&cThis command can only be used by players!"
+player-not-found: "&cPlayer not found: &f{player}"
+
+# Join message
+join:
+  welcome: "&7Welcome back, &f{player}&7! You are &f{rank}&7."
+
+# Rankup messages
+rankup:
+  success: "&aYou ranked up from {old_rank} &ato {new_rank}&a! &7(-{cost} tokens)"
+  max-success: "&aRanked up &f{count} &atimes to {rank}! &7(-{cost} tokens)"
+  insufficient-funds: "&cYou need &f{cost} &ctokens to rank up! &7(Balance: {balance})"
+  cannot-afford-next: "&cYou cannot afford any more rankups!"
+  max-rank-can-prestige: "&eYou've reached the max rank! Use &6/prestige &eto continue."
+  max-rank-can-rebirth: "&eYou're at max prestige! Use &c/rebirth &eto continue."
+  max-everything: "&d&lCongratulations! &7You've reached the maximum progression!"
+  broadcast: "&e{player} &7ranked up to {rank}&7!"
+
+# Prestige messages
+prestige:
+  success: "&d&lPRESTIGE! &7You are now &dPrestige {new_prestige}&7! &a({multiplier} multiplier)"
+  not-max-rank: "&cYou must be at {required_rank} &cto prestige!"
+  insufficient-funds: "&cYou need &f{cost} &ctokens to prestige! &7(Balance: {balance})"
+  max-prestige: "&cYou're already at max prestige!"
+  max-can-rebirth: "&eYou're at max prestige! Use &c/rebirth &eto gain permanent bonuses!"
+  max-everything: "&d&lCongratulations! &7You've reached the maximum progression!"
+  broadcast: "&d{player} &7has achieved {prestige}&7!"
+
+# Rebirth messages
+rebirth:
+  success: "&c&lREBIRTH! &7You are now {new_rebirth}&7! &a({multiplier} permanent multiplier)"
+  not-max-prestige: "&cYou must be at Prestige {required} to rebirth! &7(Current: {current})"
+  not-max-rank: "&cYou must be at Rank Z to rebirth!"
+  insufficient-funds: "&cYou need &f{cost} &ctokens to rebirth! &7(Balance: {balance})"
+  max-rebirth: "&d&lYou've achieved the ultimate level! You are a LEGEND!"
+  broadcast: "&c&l{player} &7has achieved {rebirth}&7!"
+
+# Error messages
+error:
+  transaction-failed: "&cTransaction failed! Please try again."

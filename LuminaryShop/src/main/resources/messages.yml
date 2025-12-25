@@ -1,0 +1,24 @@
+# LuminaryShop Messages
+prefix: "&6&lShop &8» &7"
+
+sold-items: "&aSold &e{count} &aitems for &e{amount} &atokens!"
+sold-single: "&aSold &e{count}x {item} &afor &e{amount} &atokens!"
+nothing-to-sell: "&cNo sellable items found!"
+inventory-empty: "&cYour inventory is empty!"
+
+sellwand-given: "&aGave sell wand with &e{uses} &auses to &e{player}&a!"
+sellwand-received: "&aYou received a sell wand with &e{uses} &auses!"
+sellwand-uses-left: "&7Uses remaining: &e{uses}"
+sellwand-expired: "&cYour sell wand has run out of uses!"
+sellwand-sold: "&aSold container contents for &e{amount} &atokens!"
+sellwand-empty: "&cNo sellable items in this container!"
+sellwand-not-container: "&cThat's not a valid container!"
+
+multiplier-active: "&7Sell multiplier: &a{multiplier}x"
+
+no-permission: "&cYou don't have permission to do that!"
+player-not-found: "&cPlayer not found!"
+invalid-amount: "&cInvalid amount!"
+
+admin-reload: "&aConfiguration reloaded!"
+admin-prices-updated: "&aPrices updated!"

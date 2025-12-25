@@ -1,0 +1,39 @@
+# LuminaryEconomy Messages
+# Customize all plugin messages here
+
+messages:
+  # General
+  prefix: "&6&lEconomy &8>> "
+  no-permission: "&cYou don't have permission to do that!"
+  player-not-found: "&cPlayer not found: {player}"
+
+  # Balance messages
+  balance:
+    self: "&7Your {color}{currency}&7 balance: {color}{amount}"
+    other: "&7{player}'s {color}{currency}&7 balance: {color}{amount}"
+
+  # Received currency
+  received: "&aYou received {color}{amount} {currency}&a!"
+
+  # Pay messages
+  pay:
+    disabled: "&cPayments are currently disabled!"
+    self: "&cYou cannot pay yourself!"
+    not-payable: "&c{currency} cannot be transferred between players!"
+    minimum: "&cMinimum payment amount is {minimum}"
+    insufficient: "&cYou don't have enough {currency}!"
+    sent: "&aYou paid &f{player} {color}{amount} {currency}&a!"
+    sent-with-tax: "&aYou paid &f{player} {color}{received} {currency}&a! &7(Tax: {tax})"
+    received: "&aYou received {color}{amount} {currency} &afrom &f{player}&a!"
+
+  # Scoreboard messages
+  scoreboard:
+    enabled: "&aScoreboard enabled!"
+    disabled: "&cScoreboard disabled!"
+
+  # Admin messages
+  admin:
+    gave: "&aGave {color}{amount} {currency} &ato &f{player}&a! &7(New balance: {new_balance})"
+    took: "&aTook {color}{amount} {currency} &afrom &f{player}&a! &7(New balance: {new_balance})"
+    set: "&aSet &f{player}&a's {color}{currency} &abalance to {color}{amount}&a!"
+    reset: "&aReset &f{player}&a's balances!"

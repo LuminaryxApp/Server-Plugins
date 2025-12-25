@@ -1,0 +1,116 @@
+# LuminaryMiners - Miner Types Configuration
+# This file is auto-generated if empty. Edit to customize miners.
+
+miners:
+  token_robot:
+    display-name: "&6Token Robot"
+    category: ROBOT
+    resource-type: TOKENS
+    base-production: 100
+    base-storage: 1000
+    purchase-cost: 5000
+    purchase-currency: tokens
+    icon: GOLD_BLOCK
+    description: "Mines tokens automatically"
+    max-tier: 5
+    tiers:
+      1:
+        display-name: "Tier 1"
+        color: "&7"
+        production-multiplier: 1.0
+        storage-multiplier: 1.0
+        upgrade-cost: 1000
+        upgrade-currency: tokens
+        icon: IRON_INGOT
+      2:
+        display-name: "Tier 2"
+        color: "&a"
+        production-multiplier: 1.5
+        storage-multiplier: 1.5
+        upgrade-cost: 2500
+        upgrade-currency: tokens
+        icon: GOLD_INGOT
+      3:
+        display-name: "Tier 3"
+        color: "&b"
+        production-multiplier: 2.0
+        storage-multiplier: 2.0
+        upgrade-cost: 5000
+        upgrade-currency: tokens
+        icon: DIAMOND
+      4:
+        display-name: "Tier 4"
+        color: "&d"
+        production-multiplier: 3.0
+        storage-multiplier: 3.0
+        upgrade-cost: 10000
+        upgrade-currency: tokens
+        icon: EMERALD
+      5:
+        display-name: "Tier 5"
+        color: "&6"
+        production-multiplier: 5.0
+        storage-multiplier: 5.0
+        upgrade-cost: 0
+        upgrade-currency: tokens
+        icon: NETHER_STAR
+
+  beacon_robot:
+    display-name: "&bBeacon Robot"
+    category: ROBOT
+    resource-type: BEACONS
+    base-production: 50
+    base-storage: 500
+    purchase-cost: 10000
+    purchase-currency: tokens
+    icon: BEACON
+    description: "Mines beacons automatically"
+    max-tier: 5
+
+  gem_robot:
+    display-name: "&dGem Robot"
+    category: ROBOT
+    resource-type: GEMS
+    base-production: 25
+    base-storage: 250
+    purchase-cost: 25000
+    purchase-currency: tokens
+    icon: DIAMOND_BLOCK
+    description: "Mines gems automatically"
+    max-tier: 5
+
+  token_golem:
+    display-name: "&6Token Golem"
+    category: GOLEM
+    resource-type: TOKENS
+    base-production: 150
+    base-storage: 1500
+    purchase-cost: 15000
+    purchase-currency: tokens
+    icon: TERRACOTTA
+    description: "Ancient golem that gathers tokens"
+    max-tier: 5
+
+  beacon_golem:
+    display-name: "&bBeacon Golem"
+    category: GOLEM
+    resource-type: BEACONS
+    base-production: 75
+    base-storage: 750
+    purchase-cost: 30000
+    purchase-currency: tokens
+    icon: PRISMARINE
+    description: "Ancient golem that gathers beacons"
+    max-tier: 5
+
+  gem_golem:
+    display-name: "&dGem Golem"
+    category: GOLEM
+    resource-type: GEMS
+    base-production: 40
+    base-storage: 400
+    purchase-cost: 50000
+    purchase-currency: tokens
+    icon: AMETHYST_BLOCK
+    description: "Ancient golem that gathers gems"
+    max-tier: 5

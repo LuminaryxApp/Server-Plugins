@@ -1,0 +1,53 @@
+name: LuminaryMines
+version: 1.0.0
+main: com.luminary.mines.LuminaryMines
+api-version: '1.20'
+authors: [Luminary]
+description: Private mines system with schematics for prison servers
+depend: [LuminaryCore, WorldEdit]
+softdepend: [LuminaryEconomy, PlaceholderAPI]
+
+commands:
+  mine:
+    description: Main mine command for players
+    usage: /<command> [subcommand]
+    aliases: [pmine, privatemine, mymine]
+  mineadmin:
+    description: Admin mine commands
+    usage: /<command> [subcommand]
+    aliases: [pmineadmin, ma]
+
+permissions:
+  luminarymines.use:
+    description: Access to private mines
+    default: true
+  luminarymines.create:
+    description: Create a private mine
+    default: true
+  luminarymines.teleport:
+    description: Teleport to your mine
+    default: true
+  luminarymines.upgrade:
+    description: Upgrade your mine
+    default: true
+  luminarymines.whitelist:
+    description: Manage mine whitelist
+    default: true
+  luminarymines.admin:
+    description: Admin mine commands
+    default: op
+  luminarymines.admin.create:
+    description: Create mines for others
+    default: op
+  luminarymines.admin.delete:
+    description: Delete any mine
+    default: op
+  luminarymines.admin.reset:
+    description: Reset any mine
+    default: op
+  luminarymines.admin.teleport:
+    description: Teleport to any mine
+    default: op
+  luminarymines.bypass:
+    description: Bypass mine restrictions
+    default: op

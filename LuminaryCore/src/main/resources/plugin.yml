@@ -1,0 +1,157 @@
+name: LuminaryCore
+version: '1.0.0'
+main: com.luminary.core.LuminaryCore
+api-version: '1.20'
+authors: [Luminary]
+description: Core plugin for all Luminary plugins - centralized configs, moderation, and utilities
+load: STARTUP
+
+commands:
+  # Moderation
+  ban:
+    description: Permanently ban a player
+    usage: /<command> <player> [reason]
+    permission: luminarycore.ban
+  tempban:
+    description: Temporarily ban a player
+    usage: /<command> <player> <duration> [reason]
+    permission: luminarycore.tempban
+  unban:
+    description: Unban a player
+    usage: /<command> <player>
+    permission: luminarycore.unban
+  kick:
+    description: Kick a player
+    usage: /<command> <player> [reason]
+    permission: luminarycore.kick
+  mute:
+    description: Permanently mute a player
+    usage: /<command> <player> [reason]
+    permission: luminarycore.mute
+  tempmute:
+    description: Temporarily mute a player
+    usage: /<command> <player> <duration> [reason]
+    permission: luminarycore.tempmute
+  unmute:
+    description: Unmute a player
+    usage: /<command> <player>
+    permission: luminarycore.unmute
+  warn:
+    description: Warn a player
+    usage: /<command> <player> <reason>
+    permission: luminarycore.warn
+  freeze:
+    description: Freeze/unfreeze a player
+    usage: /<command> <player>
+    permission: luminarycore.freeze
+  history:
+    description: View a player's punishment history
+    usage: /<command> <player>
+    permission: luminarycore.history
+
+  # Staff
+  vanish:
+    description: Toggle vanish mode
+    usage: /<command> [player]
+    permission: luminarycore.vanish
+    aliases: [v]
+  staffchat:
+    description: Toggle or send to staff chat
+    usage: /<command> [message]
+    permission: luminarycore.staffchat
+    aliases: [sc]
+  broadcast:
+    description: Broadcast a message to all players
+    usage: /<command> <message>
+    permission: luminarycore.broadcast
+    aliases: [bc]
+  maintenance:
+    description: Toggle maintenance mode
+    usage: /<command> [on|off|status]
+    permission: luminarycore.maintenance
+
+  # Admin
+  luminarycore:
+    description: LuminaryCore admin commands
+    usage: /<command> <subcommand>
+    permission: luminarycore.admin
+    aliases: [lcore, core]
+
+permissions:
+  # Admin
+  luminarycore.admin:
+    description: Access to all admin commands
+    default: op
+
+  # Moderation
+  luminarycore.ban:
+    description: Can ban players
+    default: op
+  luminarycore.ban.bypass:
+    description: Cannot be banned
+    default: op
+  luminarycore.tempban:
+    description: Can temporarily ban players
+    default: op
+  luminarycore.unban:
+    description: Can unban players
+    default: op
+  luminarycore.kick:
+    description: Can kick players
+    default: op
+  luminarycore.kick.bypass:
+    description: Cannot be kicked
+    default: op
+  luminarycore.mute:
+    description: Can mute players
+    default: op
+  luminarycore.mute.bypass:
+    description: Cannot be muted
+    default: op
+  luminarycore.tempmute:
+    description: Can temporarily mute players
+    default: op
+  luminarycore.unmute:
+    description: Can unmute players
+    default: op
+  luminarycore.warn:
+    description: Can warn players
+    default: op
+  luminarycore.warn.bypass:
+    description: Cannot be warned
+    default: op
+  luminarycore.freeze:
+    description: Can freeze players
+    default: op
+  luminarycore.freeze.bypass:
+    description: Cannot be frozen
+    default: op
+  luminarycore.history:
+    description: Can view punishment history
+    default: op
+
+  # Staff
+  luminarycore.staff:
+    description: General staff permission
+    default: op
+  luminarycore.vanish:
+    description: Can vanish
+    default: op
+  luminarycore.vanish.see:
+    description: Can see vanished players
+    default: op
+  luminarycore.vanish.others:
+    description: Can vanish other players
+    default: op
+  luminarycore.staffchat:
+    description: Can use staff chat
+    default: op
+  luminarycore.broadcast:
+    description: Can broadcast messages
+    default: op
+  luminarycore.maintenance:
+    description: Can toggle maintenance mode
+    default: op
+  luminarycore.maintenance.bypass:
+    description: Can join during maintenance
+    default: op

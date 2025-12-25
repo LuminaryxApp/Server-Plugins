@@ -1,0 +1,28 @@
+name: LuminaryGroups
+version: '1.0.0'
+main: com.luminary.groups.LuminaryGroups
+api-version: '1.20'
+author: Luminary
+description: Permission groups with prefixes, chat formatting, and in-game management
+depend: [LuminaryCore]
+softdepend:
+  - LuminaryRanks
+  - LuminaryEconomy
+  - PlaceholderAPI
+
+commands:
+  group:
+    description: Group management commands
+    usage: /<command> <args>
+    aliases: [groups, lg]
+
+permissions:
+  luminarygroups.admin:
+    description: Full admin access
+    default: op
+  luminarygroups.chat.color:
+    description: Use color codes in chat
+    default: op
+  luminarygroups.chat.format:
+    description: Use formatting codes in chat
+    default: op

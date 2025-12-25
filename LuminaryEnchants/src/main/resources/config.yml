@@ -1,0 +1,59 @@
+# ===========================================
+# LuminaryEnchants Configuration
+# Pickaxe-Only Custom Enchant System
+# ===========================================
+
+# Debug mode - enables verbose logging
+debug: false
+
+# Performance settings
+performance:
+  # Maximum blocks that can be broken per enchant proc (safety cap)
+  max-blocks-per-proc: 64
+  # Maximum search nodes for AOE effects
+  max-search-nodes: 256
+  # Cache TTL in milliseconds for parsed enchant data
+  cache-ttl-ms: 250
+
+# Anti-exploit settings
+anti-exploit:
+  # Minimum time between GUI clicks (prevents double-click issues)
+  click-debounce-ms: 250
+  # Require confirmation screen for upgrades
+  require-upgrade-confirm: true
+
+# Lore formatting settings
+lore:
+  # Prefix before enchant lore section
+  prefix: ""
+  # Bullet style for each enchant line
+  bullet-style: "&7• "
+  # Level format (use {level} placeholder)
+  level-format: "&7(&f{level}&7)"
+  # Separator between name and level
+  separator: " "
+  # Sort order: "rarity", "level", or "alphabetical"
+  sort-order: "rarity"
+  # Rarity colors
+  rarity-colors:
+    common: "&f"
+    uncommon: "&a"
+    rare: "&b"
+    epic: "&5"
+    legendary: "&6"
+
+# Economy settings
+economy:
+  # If true, economy is required for upgrades
+  require-economy: true
+  # Fallback to Vault if LuminaryTokens is unavailable
+  use-vault-fallback: true
+
+# Integration settings
+integrations:
+  # WorldGuard region protection
+  worldguard:
+    enabled: true
+    # Only allow enchant procs in specific regions
+    require-mine-region: false
+    mine-region-name: "mine"

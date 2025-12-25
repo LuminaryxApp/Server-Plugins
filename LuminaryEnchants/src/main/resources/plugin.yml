@@ -1,0 +1,25 @@
+name: LuminaryEnchants
+version: ${version}
+main: com.luminary.enchants.LuminaryEnchants
+api-version: '1.20'
+authors: [Luminary]
+description: Pickaxe-only custom enchant system for prison mines
+depend: [LuminaryCore]
+softdepend: [Vault, LuminaryTokens, LuminaryBeacons, WorldGuard]
+
+commands:
+  pickenchants:
+    description: Open the pickaxe enchants menu
+    usage: /<command> [reload|apply|clear]
+    aliases: [pe, enchants]
+
+permissions:
+  luminaryenchants.use:
+    description: Allows using the enchant menu
+    default: true
+  luminaryenchants.admin:
+    description: Allows admin commands (apply, clear)
+    default: op
+  luminaryenchants.reload:
+    description: Allows reloading the plugin config
+    default: op

@@ -1,0 +1,82 @@
+# LuminaryCore Messages
+# Use & for color codes, {placeholder} for variables
+
+messages:
+  # General
+  no-permission: "&cYou don't have permission to do that!"
+  player-not-found: "&cPlayer '{player}' not found."
+  player-not-online: "&cPlayer '{player}' is not online."
+  cannot-punish: "&cYou cannot punish this player!"
+
+  # Join/Quit
+  join-message: "&8[&a+&8] &7{player}"
+  quit-message: "&8[&c-&8] &7{player}"
+  first-join-message: "&6Welcome &e{player} &6to the server for the first time!"
+  vanish-join: "&7[Vanish] &e{player} &7joined silently."
+
+  # Ban
+  ban-screen: |
+    &c&lYou are banned from this server!
+
+    &7Reason: &f{reason}
+    &7Duration: &f{duration}
+    &7Remaining: &f{remaining}
+
+    &7Appeal at: &fdiscord.gg/example
+  ban-success: "&aSuccessfully banned &e{player}&a. Reason: &f{reason}"
+  tempban-success: "&aSuccessfully banned &e{player} &afor &e{duration}&a. Reason: &f{reason}"
+  unban-success: "&aSuccessfully unbanned &e{player}&a."
+  not-banned: "&c{player} is not banned."
+  staff-broadcast-ban: "&c[Ban] &e{player} &7was banned by &e{issuer}&7. Reason: &f{reason}"
+
+  # Kick
+  kick-screen: |
+    &c&lYou have been kicked!
+
+    &7Reason: &f{reason}
+    &7By: &f{issuer}
+  kick-success: "&aKicked &e{player}&a. Reason: &f{reason}"
+  staff-broadcast-kick: "&c[Kick] &e{player} &7was kicked by &e{issuer}&7. Reason: &f{reason}"
+
+  # Mute
+  muted: "&cYou have been muted! Reason: &f{reason}&c. Duration: &f{duration}"
+  muted-chat: "&cYou are muted! Reason: &f{reason}&c. Remaining: &f{remaining}"
+  unmuted: "&aYou have been unmuted!"
+  mute-success: "&aSuccessfully muted &e{player}&a. Reason: &f{reason}"
+  tempmute-success: "&aSuccessfully muted &e{player} &afor &e{duration}&a. Reason: &f{reason}"
+  unmute-success: "&aSuccessfully unmuted &e{player}&a."
+  not-muted: "&c{player} is not muted."
+  staff-broadcast-mute: "&6[Mute] &e{player} &7was muted by &e{issuer}&7. Reason: &f{reason}"
+
+  # Warn
+  warned: "&c&lWARNING! &e{issuer} &7has warned you: &f{reason}"
+  warn-success: "&aWarned &e{player}&a. Reason: &f{reason} &7(Total: {count})"
+  staff-broadcast-warn: "&e[Warn] &e{player} &7was warned by &e{issuer}&7. Reason: &f{reason}"
+
+  # Freeze
+  frozen: "&c&lYou have been frozen by staff! Do not log out."
+  unfrozen: "&aYou have been unfrozen."
+  freeze-success: "&aFroze &e{player}&a."
+  unfreeze-success: "&aUnfroze &e{player}&a."
+  frozen-cannot-chat: "&cYou cannot chat while frozen!"
+  frozen-cannot-command: "&cYou cannot use commands while frozen!"
+
+  # Vanish
+  vanish-enabled: "&aYou are now vanished."
+  vanish-disabled: "&aYou are no longer vanished."
+  vanish-enabled-other: "&aVanished &e{player}&a."
+  vanish-disabled-other: "&aUnvanished &e{player}&a."
+
+  # Staff Chat
+  staffchat-enabled: "&aStaff chat mode enabled. All messages go to staff chat."
+  staffchat-disabled: "&aStaff chat mode disabled."
+  staffchat-format: "&c[Staff] &e{player}&7: &f{message}"
+  staff-alert: "&c[Alert] &f{message}"
+
+  # Broadcast
+  broadcast-format: "&6&l[Broadcast] &f{message}"
+
+  # Maintenance
+  maintenance-enabled: "&aMaintenance mode enabled."
+  maintenance-disabled: "&aMaintenance mode disabled."
+  maintenance-kick: "&c&lServer Maintenance\n\n&7The server is currently under maintenance.\n&7Please try again later."

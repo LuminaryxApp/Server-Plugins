@@ -1,0 +1,17 @@
+# LuminaryMiners Configuration
+
+# Production settings
+production:
+  # How often to tick production (in seconds)
+  interval-seconds: 60
+
+  # Maximum hours of offline production (0 to disable)
+  offline-max-hours: 24
+
+# Limits
+limits:
+  # Maximum miners a player can own
+  max-miners-per-player: 10
+
+  # Maximum of each miner type per player
+  max-per-type: 3

@@ -1,0 +1,115 @@
+# ================================
+#    LuminaryMines Messages
+# ================================
+
+# General messages
+prefix: "&6&lMines &8» &7"
+no-permission: "&cYou don't have permission to do that!"
+player-only: "&cThis command can only be used by players!"
+player-not-found: "&cPlayer not found: &f{player}"
+invalid-number: "&cInvalid number: &f{input}"
+
+# Mine messages
+mine:
+  # Creation
+  created: "&aYour private mine has been created!"
+  already-have: "&cYou already have a private mine!"
+  create-failed: "&cFailed to create your mine. Please contact an admin."
+
+  # Teleportation
+  teleported: "&aTeleported to your mine!"
+  teleported-for-reset: "&eTeleported out - your mine is resetting!"
+  no-mine: "&cYou don't have a private mine! Create one with &e/mine create"
+
+  # Reset
+  reset-started: "&eResetting your mine..."
+  reset-complete: "&aMine reset complete!"
+  reset-warning: "&eYour mine will reset in 10 seconds!"
+  reset-cooldown: "&cPlease wait before resetting again!"
+
+  # Access
+  no-access: "&cYou don't have access to this mine!"
+  cannot-place: "&cYou cannot place blocks in the mine area!"
+
+  # Deletion
+  deleted: "&cYour mine has been deleted!"
+  delete-confirm: "&eAre you sure? Click to confirm deletion."
+
+  # Whitelist
+  whitelist-added: "&aAdded &f{player} &ato your whitelist!"
+  whitelist-removed: "&aRemoved &f{player} &afrom your whitelist!"
+  whitelist-full: "&cYour whitelist is full! Max: &f{max}"
+  whitelist-already: "&c{player} is already on your whitelist!"
+  whitelist-not-found: "&c{player} is not on your whitelist!"
+  whitelist-self: "&cYou cannot add yourself to your whitelist!"
+
+  # Settings
+  spawn-set: "&aSpawn point set to your current location!"
+  auto-reset-enabled: "&aAuto-reset enabled!"
+  auto-reset-disabled: "&cAuto-reset disabled!"
+  interval-changed: "&aReset interval changed to &f{time}"
+
+  # Tier
+  tier-changed: "&aMine tier changed to &f{tier}"
+  tier-max: "&cYou're already at the maximum tier!"
+
+# Admin messages
+admin:
+  mine-created: "&aCreated mine for &f{player}&a!"
+  mine-deleted: "&aDeleted &f{player}&a's mine!"
+  mine-reset: "&aReset &f{player}&a's mine!"
+  mine-not-found: "&c{player} doesn't have a mine!"
+  player-notified: "&7{player} has been notified."
+  all-reset: "&aReset all &f{count} &amines!"
+  teleported: "&aTeleported to &f{player}&a's mine!"
+  tier-set: "&aSet &f{player}&a's mine tier to &f{tier}&a!"
+  reload-complete: "&aConfiguration reloaded!"
+
+  # Schematics
+  schematic-not-found: "&cSchematic not found: &f{name}"
+  schematic-paste-failed: "&cFailed to paste schematic!"
+  no-schematics: "&cNo schematics available!"
+
+# GUI messages
+gui:
+  main-title: "&6&lYour Private Mine"
+  settings-title: "&e&lMine Settings"
+  whitelist-title: "&d&lMine Whitelist"
+  blocks-title: "&6&lBlock Composition"
+  delete-title: "&c&lDelete Mine?"
+
+  # Items
+  teleport: "&a&lTeleport to Mine"
+  teleport-lore: "&7Click to teleport to your mine"
+  reset: "&c&lReset Mine"
+  reset-lore: "&7Click to manually reset your mine"
+  settings: "&e&lSettings"
+  settings-lore: "&7Configure your mine settings"
+  whitelist: "&d&lWhitelist"
+  whitelist-lore: "&7Manage who can access your mine"
+  blocks: "&6&lBlock Composition"
+  blocks-lore: "&7View and upgrade your mine blocks"
+  close: "&c&lClose"
+  back: "&7&lBack"
+
+  # Settings items
+  auto-reset: "&b&lAuto Reset"
+  reset-interval: "&6&lReset Interval"
+  set-spawn: "&a&lSet Spawn Point"
+
+  # Whitelist items
+  add-player: "&a&lAdd Player"
+  remove-player: "&7Click to remove from whitelist"
+  previous-page: "&7&lPrevious Page"
+  next-page: "&7&lNext Page"
+
+  # Delete confirmation
+  confirm-delete: "&a&lConfirm Delete"
+  cancel-delete: "&c&lCancel"
+
+# Placeholders for info displays
+info:
+  mined-format: "{percent}%"
+  time-format: "{time}"
+  enabled: "&aEnabled"
+  disabled: "&cDisabled"

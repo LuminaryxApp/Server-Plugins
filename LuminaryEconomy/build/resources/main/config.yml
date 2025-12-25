@@ -1,0 +1,34 @@
+# LuminaryEconomy Configuration
+# Multi-currency economy system for prison servers
+
+# Storage settings
+storage:
+  # Storage type: yaml (flat file) - More options coming soon
+  type: yaml
+
+  # Auto-save settings
+  auto-save:
+    enabled: true
+    # Interval in seconds
+    interval: 300
+
+# Economy settings
+economy:
+  # Default currency for commands that don't specify one
+  default-currency: tokens
+
+  # Pay command settings
+  pay:
+    enabled: true
+    # Tax percentage (0 = no tax)
+    tax-percent: 0.0
+    # Minimum amount that can be paid
+    minimum: 1.0
+
+# Integration settings
+integration:
+  # Hook into LuminaryEnchants for enchant purchases
+  luminary-enchants: true
+
+  # Hook into LuminaryCrates for rewards
+  luminary-crates: true

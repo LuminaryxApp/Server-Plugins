@@ -1,0 +1,42 @@
+# LuminaryCrates Configuration
+# Main configuration file
+
+# Animation settings
+animation:
+  # Duration of the spinning animation in ticks (20 ticks = 1 second)
+  duration-ticks: 80
+  # Speed of animation (higher = faster initial spin)
+  speed: 2
+
+# Crate settings
+crates:
+  # Enable crate preview (left-click to preview)
+  preview-enabled: true
+
+# Broadcast settings
+broadcast:
+  # Enable broadcasting rare wins to all players
+  enabled: true
+  # Minimum rarity to broadcast (COMMON, UNCOMMON, RARE, EPIC, LEGENDARY, MYTHIC)
+  min-rarity: LEGENDARY
+
+# Particles
+particles:
+  # Enable particles when opening crates
+  enabled: true
+  # Particle count multiplier
+  multiplier: 1.0
+
+# Sounds
+sounds:
+  # Enable sounds
+  enabled: true
+  # Volume (0.0 - 1.0)
+  volume: 1.0
+
+# Integration with LuminaryEnchants
+integration:
+  # Enable Keyfinder enchant integration
+  keyfinder-enabled: true
+  # Default crate ID for Keyfinder drops (if not specified in enchants.yml)
+  keyfinder-default-crate: common
