@@ -1,18 +1,38 @@
-# Luminary Prison Plugins
+Luminary Prison Plugins
 
 A complete plugin suite for Minecraft prison servers. Built from scratch to work together seamlessly - no dependency hell, no configuration nightmares, just plugins that talk to each other out of the box.
 
 ---
 
 ## Screenshots
+Robots Plugin
+https://youtu.be/Aahp-R1MI4A
+<img width="1920" height="1009" alt="2025-12-26_05 55 53" src="https://github.com/user-attachments/assets/f601fbce-4847-4ebc-99b1-47e6220d4c21" />
+<img width="1920" height="1009" alt="2025-12-26_05 55 40" src="https://github.com/user-attachments/assets/a723a4ad-c849-4ba2-971b-5e57a3dd68d0" />
+<img width="1920" height="1009" alt="2025-12-26_05 55 37" src="https://github.com/user-attachments/assets/4560b4ad-2622-496a-8755-1e9466a2829f" />
 
-<!-- Add your screenshots here -->
-<!-- ![Server Gameplay](images/gameplay.png) -->
-<!-- ![Scoreboard Sidebar](images/sidebar.png) -->
-<!-- ![Mining with Enchants](images/mining.png) -->
-<!-- ![Crate Opening](images/crate-spin.gif) -->
+Eco Plugin
+https://youtu.be/qaCdBuClMTg
+<img width="1920" height="1009" alt="2025-12-26_05 53 41" src="https://github.com/user-attachments/assets/75ad390b-d4ac-4958-aa87-09c6ec944f2f" />
+<img width="1920" height="1009" alt="2025-12-26_05 53 46" src="https://github.com/user-attachments/assets/a511b722-9f91-4b2f-a639-f1da4be6a662" />
 
-*Screenshots coming soon*
+Crates Plugin
+https://youtu.be/C9Lfll38osI
+<img width="1920" height="1009" alt="2025-12-26_05 50 41" src="https://github.com/user-attachments/assets/baaeaf9f-cf40-4a26-9a97-8a210501a5ad" />
+<img width="1920" height="1009" alt="2025-12-26_05 50 43" src="https://github.com/user-attachments/assets/9574a937-6a50-4eb2-96ef-44159372f405" />
+<img width="1920" height="1009" alt="2025-12-26_06 01 09" src="https://github.com/user-attachments/assets/16d2c8a3-f9e6-486a-acf8-1159e56efd93" />
+
+Enchant Plugin
+https://youtu.be/80yVm3BU0eo
+<img width="1920" height="1009" alt="2025-12-26_05 37 25" src="https://github.com/user-attachments/assets/d0fd9ea1-fea6-4c09-a814-66b18004bb20" />
+<img width="1920" height="1009" alt="2025-12-26_05 37 06" src="https://github.com/user-attachments/assets/8eae78b5-a263-427f-96e5-88130644361c" />
+<img width="1920" height="1009" alt="2025-12-26_05 38 49" src="https://github.com/user-attachments/assets/8cae4247-6ab1-411d-951b-6736d019b3c4" />
+
+Pmine Plugin
+https://youtu.be/BiuVsUFdStI
+<img width="1920" height="1009" alt="2025-12-26_05 46 45" src="https://github.com/user-attachments/assets/f6fb6bb1-0fb3-4fcc-9a10-9d5d99ad6bff" />
+<img width="1920" height="1009" alt="2025-12-26_05 46 02" src="https://github.com/user-attachments/assets/3db74a59-31e1-4031-9b18-7bd3cbec5586" />
+<img width="1920" height="1009" alt="2025-12-26_05 46 56" src="https://github.com/user-attachments/assets/152f305b-64e7-4516-bac9-4ddde0b103e8" />
 
 ---
 
