@@ -15,6 +15,7 @@ Eco Plugin
 https://youtu.be/qaCdBuClMTg
 <img width="1920" height="1009" alt="2025-12-26_05 53 41" src="https://github.com/user-attachments/assets/75ad390b-d4ac-4958-aa87-09c6ec944f2f" />
 <img width="1920" height="1009" alt="2025-12-26_05 53 46" src="https://github.com/user-attachments/assets/a511b722-9f91-4b2f-a639-f1da4be6a662" />
+<img width="1920" height="1009" alt="2025-12-26_06 11 09" src="https://github.com/user-attachments/assets/a7c818ea-9964-4041-87f5-567a747df244" />
 
 Crates Plugin
 https://youtu.be/C9Lfll38osI
